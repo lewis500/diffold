@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style/main.css">
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/lodash/lodash.min.js"></script>
+<script src="bower_components/regression-js/build/regression.min.js"></script>
+
+<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], skipTags: ["script","noscript","style","textarea","code"] } });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<body ng-app="mainApp" class='container'>
+  <div class='col-md-6'>
+
+    <h3>Introduction</h3>
+    <blockquote class="blockquote">
+      As long as nineteenth-centry spellbinders of science could point to the planets and the Milky Way, or could descant on a piece of chalk to unfold the history of the earth, they held their audience. But with nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
+      <footer>Jacques Barzun,
+        <cite title="The Use and Abuse of Art">The Use and Abuse of Art (1974)</cite>
+      </footer>
+    </blockquote>
+
+
+    <p>"Differential equation" has the science-y ring of phrases like "flux capacitor" and "tachyon field" popular among screenwriters. You rarely hear it used in fiction, though. Aliens never have a weak spot in their differential equations. The reason is probably that so many people have had such awful experiences with differential equations. If what Barzun says is true, the mere sight of them  melted someone.</p>
+    <p>The goal here is not to help anyone pass "Control of Distributed Parameter Systems." It is to show off one of the most wonderful tricks we have to comprehend and design the world around us.</p>
+
+    <blockquote>
+      ...the #1 math tool for solving problems in physics, engineering, telemetry, automation, and all manner of hard science.
+      <footer>David Foster Wallace,
+        <cite title="Everything and More">Everything and More</cite>
+      </footer>
+    </blockquote>
+
+    <p>Before starting, three points: (i) an equation is not a function, it is a statement about things being equal; (ii) we'll use '$\equiv$' to <em>define</em> functions; (iii) $ y'(t) $ means the derivative of the function $y(t)$ at $t$. Below, hover to see the derivative at each $x(t)$ and draw a function we'll define as $F(t) \equiv \dot y $</p>
+
+    <h3>What is a differential equation?</h3>
+    <!-- <p></p> -->
+
+    <p>You're probably used to equations like $ t^2 +t = 2 $. Here, "solving the equation" means finding numbers that make the equation true. Below, let the left-hand side be the function $ L(t) ≡ t^2 + t$ and change $ t $ until $ L(t) = 2 $.</p>
+
+    <div ng-controller="funCtrl as fun" class='row'>
+      <div data='fun.data' point='fun.point' fun-plot-one class='col-xs-8'></div>
+      <div point='fun.point' bar-one class='col-xs-3'></div>
+    </div>
+
+    <p>A differential equation is a relationship that involves the derivative (i.e., the slope) of a function &mdash; such as $f'(t) = 2t - 5 $ or $ f''(t) - 3f'(t) + 2f(t)=3. $ Solving a differential equation means finding a function that makes it true. Basically, you start out knowing some fact about the derivative of a mystery function, and you ask yourself, "For which function $ f (t) $ is this fact about its derivative true?"</p>
+
+
+    INSERT PLOT
+
+    <p>Instead of specific numbers, the solutions to differential equations are functions. </p>
+
+    \[ f'(t) = 2t - 5. \, \,\,\,\, (\mathcal{A}) \]
+
+    <p>Now, on the plot below, see if you can draw a function whose derivative satisfies $ \mathcal{A}$. To get started, choose the general form of the function and then click some dots. We'll fill in the best-fit function.</p>
+
+
+    <p>When would you want to solve for a function? One of the most common cases is a situation where you want to predict something. For example, suppose you pulled the block below to the right or left and then let go. Where will the block be in 5, 6 or 7 seconds? To answer, you'll need a function like $ L(t) $ that gives the block's location for any time, $ t $.</p>
+
+    <div spring-system></div>
+
+    <p>A differential equation identifies a function like $ L(t) $ by giving its derivative (or derivatives!) in terms of other variables.</p>
+
+  </div>
+
+  <div class='clearfix'></div>
+
+  <div ng-controller="funPickerCtrl as FP">
+    <div data='FP.data' fun-picker-left update='FP.update'></div>
+    <!-- <div data='FP.data' fun-picker-right></div> -->
+
+  </div>
+
+</body>
+
+<script type="text/javascript">
+angular.module('mainApp', []);
+</script>
+<script type="text/javascript" src='js/controllers.js'></script>
+<script type="text/javascript" src='js/funPickerLeft.js'></script>
+<script type="text/javascript" src='js/funPickerRight.js'></script>
+<script type="text/javascript" src='js/plot2.js'></script>
+<script type="text/javascript" src='js/barOne.js'></script>
+<script type="text/javascript" src='js/spring.js'></script>

@@ -1,0 +1,24 @@
+{
+  "name": "diffEQ",
+  "version": "0.0.0",
+  "authors": [
+    "Lewis <lewis500@gmail.com>"
+  ],
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "~3.0.0",
+    "angular": "~1.3.10",
+    "d3": "~3.5.3"
+  }
+}
