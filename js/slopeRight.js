@@ -1,5 +1,4 @@
-function funPickerRight() {
-
+function slopeRight() {
   // =====setup=====
   var margin = {
       top: 20,
@@ -7,19 +6,16 @@ function funPickerRight() {
       bottom: 30,
       left: 40
     },
-    width = 325 - margin.left - margin.right,
+    width = 350 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
   var x = d3.scale.linear()
     .range([0, width])
     .domain([0, 4])
-    // .clamp(true)
 
   var y = d3.scale.linear()
     .range([height, 0])
     .domain([0, 4])
-
-  // .clamp(true)
 
   var xAxis = d3.svg.axis()
     .scale(x)
@@ -30,49 +26,46 @@ function funPickerRight() {
     .orient("left");
 
   var line = d3.svg.line()
-    .defined(function(d) {
-      return d[1] > 0;
-    })
     .x(function(d) {
       return x(d[0])
     })
     .y(function(d) {
-      return y(d[1])
-    })
-
+      return y(d[2])
+    });
 
   return {
     restrict: 'A',
     link: function(scope, el, attr) {
-      var FP = scope.FP;
-
       var svg = d3.select(el[0]).append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      svg.append("g")
+      var gXAxis = svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .append("text")
+        .attr("transform", "translate(0," + y(0) + ")")
+
+      gXAxis.call(xAxis)
+
+      gXAxis.append("text")
         .attr("class", "label")
         .attr("x", width)
         .attr("y", -6)
         .style("text-anchor", "end")
         .text("x");
 
-      svg.append("g")
+      var gYAxis = svg.append("g")
         .attr("class", "y axis")
         .call(yAxis)
-        .append("text")
+
+      gYAxis.append("text")
         .attr("class", "label")
         .attr("transform", "rotate(-90)")
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("y")
+        .text("y");
 
       var main = svg.append('g').attr("class", 'main');
 
@@ -85,31 +78,39 @@ function funPickerRight() {
 
       var path = main.append('path')
         .attr({
-          'stroke-width': 2,
-          fill: 'none',
-          class: 'der',
-          opacity: 0.5,
-          'stroke': '#3FC380'
-        });
+          'stroke-width': 1,
+          stroke: '#555',
+          opacity: 0.6,
+          fill: 'none'
+        })
 
-      var path2 = main.append('path')
-        .datum(FP.goal)
+      var bar = main.append('rect')
         .attr({
-          'stroke-width': 2,
-          fill: 'none',
-          class: 'der',
-          opacity: 0.5,
-          'stroke': '#666',
-          d: line
+          width: 4,
+          fill: '#22A7F0',
+          dx: -2
         });
 
-      scope.$on('move', function(d) {
-        if (FP.derivative.length == 0) return;
-        path.datum(FP.derivative).attr('d', line);
-      });
+      scope.$watch('point', function(d) {
+        if (d[1] < 0) {
+          y.domain([d[1] * 1.3, 4 + d[1]]);
+          gYAxis.call(yAxis);
+          gXAxis.attr('transform', 'translate(' + [0, y(0)] + ')')
+        }
+
+        bar.attr({
+          height: Math.abs(y(0) - y(d[1])),
+          y: Math.min(y(d[1]), y(0)),
+          x: x(d[0])
+        });
+
+        path.datum(scope.data.slice(1, d[2]+1))
+          .attr('d', line);
+
+      }, true);
 
     }
   };
 }
 
-angular.module('mainApp').directive('funPickerRight', funPickerRight);
+angular.module('mainApp').directive('slopeRight', slopeRight);

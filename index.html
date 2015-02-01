@@ -18,7 +18,11 @@
 </script>
 
 <body ng-app="mainApp" class='container'>
-  <div class='col-md-6'>
+
+  <marker id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" />
+  </marker>
+  <div class='col-md-7'>
 
     <h3>Introduction</h3>
     <blockquote class="blockquote">
@@ -29,8 +33,8 @@
     </blockquote>
 
 
-    <p>"Differential equation" has the science-y ring of phrases like "flux capacitor" and "tachyon field" popular among screenwriters. You rarely hear it used in fiction, though. Aliens never have a weak spot in their differential equations. The reason is probably that so many people have had such awful experiences with differential equations. If what Barzun says is true, the mere sight of them  melted someone.</p>
-    <p>The goal here is not to help anyone pass "Control of Distributed Parameter Systems." It is to show off one of the most wonderful tricks we have to comprehend and design the world around us.</p>
+    <p>The phrase "differential equation" is intimidating. It's a combination of two science words, like "flux capacitor" and "tachyon field." If what Barzun says is true, the mere sight of them melted someone.</p>
+    <p>But fear not. Differential equations are your friends. The goal here is not to help anyone pass "Control of Distributed Parameter Systems." It is to show off one of the most wonderful tricks we have to comprehend and design the world around us.</p>
 
     <blockquote>
       ...the #1 math tool for solving problems in physics, engineering, telemetry, automation, and all manner of hard science.
@@ -39,19 +43,28 @@
       </footer>
     </blockquote>
 
-    <p>Before starting, three points: (i) an equation is not a function, it is a statement about things being equal; (ii) we'll use '$\equiv$' to <em>define</em> functions; (iii) $ y'(t) $ means the derivative of the function $y(t)$ at $t$. Below, hover to see the derivative at each $x(t)$ and draw a function we'll define as $F(t) \equiv \dot y $</p>
-
-    <h3>What is a differential equation?</h3>
+    <p>A differential equation is a relationship that involves the derivative (i.e., the slope) of a function &mdash; such as $f'(t) = 2t - 5 $ or $ f''(t) - 3f'(t) + 2f(t)=3. $ Solving a differential equation means finding a function that makes it true. Basically, you start out knowing some fact about the derivative of a mystery function, and you ask yourself, "For which function $ f (t) $ is this fact about its derivative true?"</p>
     <!-- <p></p> -->
 
     <p>You're probably used to equations like $ t^2 +t = 2 $. Here, "solving the equation" means finding numbers that make the equation true. Below, let the left-hand side be the function $ L(t) ≡ t^2 + t$ and change $ t $ until $ L(t) = 2 $.</p>
 
     <div ng-controller="funCtrl as fun" class='row'>
-      <div data='fun.data' point='fun.point' fun-plot-one class='col-xs-8'></div>
+      <div data='fun.data' point='fun.point' fun-plot-left class='col-xs-8'></div>
       <div point='fun.point' bar-one class='col-xs-3'></div>
     </div>
 
-    <p>A differential equation is a relationship that involves the derivative (i.e., the slope) of a function &mdash; such as $f'(t) = 2t - 5 $ or $ f''(t) - 3f'(t) + 2f(t)=3. $ Solving a differential equation means finding a function that makes it true. Basically, you start out knowing some fact about the derivative of a mystery function, and you ask yourself, "For which function $ f (t) $ is this fact about its derivative true?"</p>
+    <div ng-controller="slopeCtrl" class='row'>
+      <div slope-left class='col-xs-6'></div>
+      <div slope-right class='col-xs-6'></div>
+    </div>
+
+    haasdf
+
+    <div ng-controller="expFunCtrl as E" class='row'>
+      <div exp-fun-left class='col-xs-6'></div>
+    </div>
+
+
 
 
     INSERT PLOT
@@ -69,15 +82,15 @@
 
     <p>A differential equation identifies a function like $ L(t) $ by giving its derivative (or derivatives!) in terms of other variables.</p>
 
+    <div ng-controller="funPickerCtrl as FP" class='row'>
+      <div fun-picker-left class='col-xs-6'></div>
+      <div fun-picker-right class='col-xs-6'></div>
+    </div>
+    asdfasdf
+
+
   </div>
 
-  <div class='clearfix'></div>
-
-  <div ng-controller="funPickerCtrl as FP">
-    <div data='FP.data' fun-picker-left update='FP.update'></div>
-    <!-- <div data='FP.data' fun-picker-right></div> -->
-
-  </div>
 
 </body>
 
@@ -87,6 +100,9 @@ angular.module('mainApp', []);
 <script type="text/javascript" src='js/controllers.js'></script>
 <script type="text/javascript" src='js/funPickerLeft.js'></script>
 <script type="text/javascript" src='js/funPickerRight.js'></script>
-<script type="text/javascript" src='js/plot2.js'></script>
+<script type="text/javascript" src='js/funPlotLeft.js'></script>
 <script type="text/javascript" src='js/barOne.js'></script>
 <script type="text/javascript" src='js/spring.js'></script>
+<script type="text/javascript" src='js/slopeLeft.js'></script>
+<script type="text/javascript" src='js/slopeRight.js'></script>
+<script type="text/javascript" src='js/expFunLeft.js'></script>

@@ -22,12 +22,15 @@ angular.module('mainApp')
       $scope.$broadcast('addDot');
     };
 
+    var newDatum;
+
     FP.addDot = function addDot(res) {
-      FP.data.push({
+      newDatum = {
         x: res[0],
         y: res[1],
         i: (j++)
-      });
+      };
+      FP.data.push(newDatum);
       FP.data.sort(function(a, b) {
         return a.x - b.x;
       });
@@ -36,7 +39,19 @@ angular.module('mainApp')
       $scope.$broadcast('addDot');
     };
 
-    FP.drag = function drag(res) {
+
+    FP.dragRec = function(res) {
+      newDatum.x = res[0];
+      newDatum.y = res[1];
+      FP.data.sort(function(a, b) {
+        return a.x - b.x;
+      });
+      update();
+      $scope.$apply();
+      $scope.$broadcast('move');
+    };
+
+    FP.drag = function(res) {
       var i = res[2];
       FP.data[i].x = res[0];
       FP.data[i].y = res[1];
@@ -49,49 +64,63 @@ angular.module('mainApp')
     };
 
     FP.fit = [];
+    FP.derivative = [];
 
     function update() {
       var degree = 3;
-      if(FP.data.length < degree+1) return;
+      if (FP.data.length < degree ) return;
       var filler = _.range(FP.data[0].x, FP.data[FP.data.length - 1].x + .5, .125)
         .map(function(d) {
           return [d, null]
         });
 
       var newData = _.union(FP.data.map(function(d) {
-        return [d.x, d.y]
+        return [d.x, d.y];
       }), filler).sort(function(a, b) {
-        return a[0] - b[0]
+        return a[0] - b[0];
       });
 
-      FP.fit = regression('polynomial', newData, degree).points;
+      var r = regression('polynomial', newData, degree);
+      FP.fit = r.points;
+      FP.derivative = filler.map(function(d) {
+        var res = 0;
+        r.equation.forEach(function(v, i) {
+          if (i == 0) return;
+          res = res + (i) * v * Math.pow(d[0], i - 1)
+        })
+        return [d[0], res];
+      });
 
-      // var newData2 = filler.map(function(d) {
-      //   var res = 0;
-      //   r.equation.forEach(function(v, i) {
-      //     if (i == 0) return;
-      //     res = res + (i) * v * Math.pow(d[0], i - 1)
-      //   })
-      //   return [d[0], res];
-      // });
+    }
 
-
-      // path3.datum(newData2)
-      // path3.attr('d', line2)
-    };
+    FP.goal = _.range(0, 4, 0.125)
+      .map(function(d) {
+        return [d,
+          1 + 1 * d - .5 * Math.pow(d, 2)
+        ];
+      });
 
   });
-
-
 
 angular.module('mainApp')
   .controller('funCtrl', function($scope) {
     var fun = this;
 
-    fun.data = _.range(0, 4, .1).map(function(d) {
+    fun.data = _.range(0, 4, .125).map(function(d) {
       return [d, Math.pow(d, 2) - 2 * d];
     });
 
     fun.point = [0, 1]
+
+  });
+
+
+angular.module('mainApp')
+  .controller('slopeCtrl', function($scope) {
+    $scope.data = _.range(0, 4, .05).map(function(d) {
+      return [d, 1.5 + .5 * Math.pow(d, 2) - 1 * d,  d - 1];
+    });
+
+    $scope.point = [0, 0, 0];
 
   });

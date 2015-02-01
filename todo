@@ -1,10 +1,23 @@
+
+use defs to mask out the other parts of the plots
+have the function picker start out with some dots drawn
+make one for f' = f(x)
+put labels to follow lines around
+
+
 FIXER PLOT
 share the data
+stop cutting off the data a few times after your dots. let it ride out.
+get rid of the object/array dichotomy
+when you click on the left plot, have it draw the slope and show that slope on the right plot as a bar
 
+display the functions.
+
+REAL-TIME MATHJAX UPDATING
 
 
 
 make the plot with its slope as a magnitude
-
+add arrows
 make the circles pulse
 add a voronoi for the circle selections

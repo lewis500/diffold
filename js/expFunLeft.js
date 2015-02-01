@@ -1,11 +1,76 @@
-function funPickerLeft() {
+angular.module('mainApp')
+  .directive('expFunLeft', expFunLeft);
 
+
+angular.module('mainApp')
+  .controller('expFunCtrl', expFunCtrl);
+
+function expFunCtrl($scope) {
+  var E = this;
+
+  function equation(d) {
+    return Math.exp(0.5 * d);
+  }
+
+  E.goal = _.range(0, 4, 0.1).map(function(t) {
+    return [t, equation(t)];
+  });
+
+  E.dots = [];
+
+  var toFill = _.range(0, 4, 0.1).map(function(t) {
+    return [t, null];
+  });
+
+  function resort() {
+    E.dots.sort(function(a, b) {
+      return a[0] - b[0];
+    });
+  }
+
+  E.j = 0;
+
+  function update() {
+    if (E.dots.length < 2) return;
+    var newData = _.union(E.dots, toFill);
+    var r = regression('exponential', newData);
+    E.fit = r.points.sort(function(a, b) {
+      return a[0] - b[0];
+    })
+    $scope.$apply();
+    $scope.$broadcast('move');
+  }
+
+  E.addDot = function(d) {
+    E.j++;
+    E.dots.push(d);
+    resort();
+    $scope.$broadcast('addDot');
+    update();
+  };
+
+  E.removeDot = function(d) {
+    E.dots.splice(E.dots.indexOf(d), 1);
+    $scope.$broadcast('addDot');
+    update();
+  };
+
+  E.drag = function(d, res) {
+    d[0] = res[0];
+    d[1] = res[1];
+    resort();
+    update();
+  };
+
+}
+
+function expFunLeft() {
   // =====setup=====
   var margin = {
       top: 20,
       right: 20,
       bottom: 30,
-      left: 40
+      left: 50
     },
     width = 350 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
@@ -13,12 +78,10 @@ function funPickerLeft() {
   var x = d3.scale.linear()
     .range([0, width])
     .domain([0, 4])
-    .clamp(true)
 
   var y = d3.scale.linear()
     .range([height, 0])
     .domain([0, 4])
-    .clamp(true)
 
   var xAxis = d3.svg.axis()
     .scale(x)
@@ -29,31 +92,17 @@ function funPickerLeft() {
     .orient("left");
 
   var line = d3.svg.line()
-    .defined(function(d) {
-      return d.x >= 0;
-    })
     .x(function(d) {
-      return x(d.x)
+      return x(d[0]);
     })
     .y(function(d) {
-      return y(d.y)
-    })
-
-  var line2 = d3.svg.line()
-    .defined(function(d) {
-      return d[1] >= 0;
-    })
-    .x(function(d) {
-      return x(d[0])
-    })
-    .y(function(d) {
-      return y(d[1])
-    })
+      return y(d[1]);
+    });
 
   return {
     restrict: 'A',
     link: function(scope, el, attr) {
-      var FP = scope.FP;
+      var E = scope.E;
 
       var svg = d3.select(el[0]).append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -83,43 +132,33 @@ function funPickerLeft() {
         .style("text-anchor", "end")
         .text("y");
 
-      var bisect = d3.bisector(function(d) {
-        return d.x
-      }).right;
-
       var main = svg.append('g').attr("class", 'main');
 
-      function dragCall(d, i) {
-        if (d3.event.sourceEvent.which == 3) return;
-        var i = FP.data.indexOf(d);
-        var res = [x.invert(d3.event.x), y.invert(d3.event.y), i];
-        FP.drag(res);
-      }
+      var newDatum;
 
-      var drag = d3.behavior.drag()
+      var dragNew = d3.behavior.drag()
         .on('dragstart', function(d) {
           if (d3.event.defaultPrevented) return;
-          // d3.event.sourceEvent.stopPropagation(); // silence other listeners
           var loc = d3.mouse(this);
-          var res = [x.invert(loc[0]), y.invert(loc[1])];
-          FP.addDot(res);
+          newDatum = [x.invert(loc[0]), y.invert(loc[1])];
+          newDatum.i = E.j;
+          E.addDot(newDatum);
         })
         .on('drag', function() {
-          // var i = Math.min(bisect(FP.data, x.invert(d3.mouse(this)[0])), FP.data.length - 1);
-          // var i = FP.data.indexOf(lastDatum);
-          var res = [x.invert(d3.event.x), y.invert(d3.event.y)];
-          FP.dragRec(res);
+          E.drag(newDatum, [x.invert(d3.event.x), y.invert(d3.event.y)]);
         })
         .on('dragend', function(d) {
           d3.event.sourceEvent.stopPropagation(); // silence other listeners
         });
 
-
-      var drag2 = d3.behavior.drag()
+      var dragExisting = d3.behavior.drag()
         .on('dragstart', function(d) {
           d3.event.sourceEvent.stopPropagation(); // silence other listeners
         })
-        .on('drag', dragCall)
+        .on('drag', function(d) {
+          if (d3.event.sourceEvent.which == 3) return;
+          E.drag(d, [x.invert(d3.event.x), y.invert(d3.event.y)]);
+        })
         .on('dragend', function(d) {
           d3.event.sourceEvent.stopPropagation(); // silence other listeners
         });
@@ -130,63 +169,43 @@ function funPickerLeft() {
           height: height,
           opacity: 0,
         })
-        .call(drag);
-      // .on('click', function(d) {
-      //   if (d3.event.defaultPrevented) return;
-      //   // d3.event.sourceEvent.stopPropagation(); // silence other listeners
-      //   var loc = d3.mouse(this);
-      //   var res = [x.invert(loc[0]), y.invert(loc[1])];
-      //   FP.addDot(res);
-      // });
+        .call(dragNew);
 
-      var path = main.append('path')
+      var fitPath = main.append('path')
         .attr({
           'stroke-width': 1,
           fill: 'none',
-          'stroke': '#555',
+          'stroke': '#22A7F0',
+          opacity: 0.8,
+        });
+
+      var linePath = main.append('path')
+        .attr({
+          'stroke-width': 1,
+          fill: 'none',
+          'stroke': '#D91E18',
           opacity: 0.4,
           'stroke-dasharray': '2,2'
         });
 
-      var path2 = main.append('path')
-        .attr({
-          'stroke-width': 1,
-          fill: 'none',
-          'stroke': '#19B5FE',
-          'stroke-dasharray': '5,1'
-        });
-
-      // var path3 = main.append('path')
-      //   .attr({
-      //     'stroke-width': 2,
-      //     fill: 'none',
-      //     class: 'der',
-      //     opacity: 0.5,
-      //     'stroke': '#F7CA18',
-      //     // 'stroke-dasharray': '
-      //   });
-
       var dots;
 
-      scope.$on('move', function(d) {
-        if (!FP.data) return;
-        dots.data(FP.data)
+      scope.$on('move', moveFun);
+
+      scope.$on('addDot', addFun);
+
+      function moveFun(d) {
+        dots.data(E.dots)
           .attr('transform', function(d) {
-            return 'translate(' + [x(d.x), y(d.y)] + ')'
+            return 'translate(' + [x(d[0]), y(d[1])] + ')'
           });
-        path.datum(FP.data)
-          .attr('d', line);
+        fitPath.datum(E.fit).attr('d', line);
+        linePath.datum(E.dots).attr('d', line);
+      }
 
-        if (FP.fit.length > 0) {
-          path2.datum(FP.fit)
-          path2.attr('d', line2)
-        }
-
-      });
-
-      scope.$on('addDot', function() {
+      function addFun() {
         dots = main.selectAll('.dot')
-          .data(FP.data, function(d) {
+          .data(E.dots, function(d) {
             return d.i;
           });
 
@@ -196,13 +215,13 @@ function funPickerLeft() {
           .attr({
             class: 'dot',
             transform: function(d) {
-              return 'translate(' + [x(d.x), y(d.y)] + ')'
+              return 'translate(' + [x(d[0]), y(d[1])] + ')'
             }
           })
-          .call(drag2)
-          .on("contextmenu", function(d, i) {
+          .call(dragExisting)
+          .on("contextmenu", function(d) {
             //handle right click
-            FP.removeDot(d);
+            E.removeDot(d);
             d3.event.preventDefault();
           });
 
@@ -215,8 +234,8 @@ function funPickerLeft() {
           .attr({
             r: 8,
             'fill-opacity': 0.03,
-            fill: "crimson",
-            stroke: 'red',
+            fill: "#EF4836",
+            stroke: 'D91E18',
             'stroke-width': '1',
             'stroke-opacity': .03
           })
@@ -238,22 +257,18 @@ function funPickerLeft() {
               .ease('cubic-out')
               .attr('fill-opacity', .03)
               .attr('r', 8)
-          })
+          });
 
         dots.exit().remove();
 
-        path.datum(FP.data)
-          .attr('d', line);
+        fitPath.datum(E.fit).attr('d', line);
+        linePath.datum(E.dots).attr('d', line);
 
+        scope.$broadcast('move');
 
-        scope.$emit('move');
-      });
+      }
 
     }
   };
 
 }
-
-
-angular.module('mainApp')
-  .directive('funPickerLeft', funPickerLeft)
