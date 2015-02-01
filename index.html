@@ -49,8 +49,7 @@
     <p>You're probably used to equations like $ t^2 +t = 2 $. Here, "solving the equation" means finding numbers that make the equation true. Below, let the left-hand side be the function $ L(t) ≡ t^2 + t$ and change $ t $ until $ L(t) = 2 $.</p>
 
     <div ng-controller="funCtrl as fun" class='row'>
-      <div data='fun.data' point='fun.point' fun-plot-left class='col-xs-8'></div>
-      <div point='fun.point' bar-one class='col-xs-3'></div>
+      <div fun-plot-left class='col-xs-8'></div>
     </div>
 
     <div ng-controller="slopeCtrl" class='row'>
@@ -65,8 +64,6 @@
     </div>
 
 
-
-
     INSERT PLOT
 
     <p>Instead of specific numbers, the solutions to differential equations are functions. </p>
@@ -77,17 +74,6 @@
 
 
     <p>When would you want to solve for a function? One of the most common cases is a situation where you want to predict something. For example, suppose you pulled the block below to the right or left and then let go. Where will the block be in 5, 6 or 7 seconds? To answer, you'll need a function like $ L(t) $ that gives the block's location for any time, $ t $.</p>
-
-    <div spring-system></div>
-
-    <p>A differential equation identifies a function like $ L(t) $ by giving its derivative (or derivatives!) in terms of other variables.</p>
-
-    <div ng-controller="funPickerCtrl as FP" class='row'>
-      <div fun-picker-left class='col-xs-6'></div>
-      <div fun-picker-right class='col-xs-6'></div>
-    </div>
-    asdfasdf
-
 
   </div>
 

@@ -1,32 +1,33 @@
 function funPlotLeft() {
 
+  // =====setup=====
+  var margin = {
+      top: 20,
+      right: 20,
+      bottom: 30,
+      left: 40
+    },
+    width = 400 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+
+  var x = d3.scale.linear()
+    .rangeRound([0, width])
+    .domain([0, 4])
+
+  var y = d3.scale.linear()
+    .range([height, 0])
+    .domain([-1, 4])
+
+  var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
   function link(scope, el, attr) {
-    // =====setup=====
-    var margin = {
-        top: 20,
-        right: 20,
-        bottom: 30,
-        left: 40
-      },
-      width = 400 - margin.left - margin.right,
-      height = 300 - margin.top - margin.bottom;
-
-    var x = d3.scale.linear()
-      .rangeRound([0, width])
-      .domain([0, 4])
-      // .rangeRound()
-
-    var y = d3.scale.linear()
-      .range([height, 0])
-      .domain([-1, 4])
-
-    var xAxis = d3.svg.axis()
-      .scale(x)
-      .orient("bottom");
-
-    var yAxis = d3.svg.axis()
-      .scale(y)
-      .orient("left");
+    var fun = scope.fun;
 
     var svg = d3.select(el[0]).append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -65,12 +66,19 @@ function funPlotLeft() {
         opacity: 0,
       })
       .on('mousemove', function() {
-
-        var u = x.invert(d3.mouse(this)[0])
+        var u = x.invert(d3.mouse(this)[0]);
         scope.$apply(function() {
-          scope.point = [u, Math.pow(u, 2) - 2 * u];
+          fun.point = fun.equation(u);
         });
+      });
 
+    var goalLine = main.append('line')
+      .attr({
+        x1: 0,
+        x2: width,
+        y1: y(fun.goal),
+        y2: y(fun.goal),
+        stroke: 'blue',
       });
 
     var line = d3.svg.line()
@@ -102,13 +110,33 @@ function funPlotLeft() {
           y1: loc[1],
           y2: loc[1]
         });
+        if (Math.abs(d[1] - fun.goal) < .1) {
+          this.lineHor
+            .style({
+              stroke: 'red'
+            });
+          this.lineVert
+            .style({
+              stroke: 'red'
+            });
+            console.log('asdf')
+          return;
+        }
+        this.lineHor
+          .style({
+            stroke: null
+          });
+        this.lineVert
+          .style({
+            stroke: null
+          });
       },
       lineVert: main.append('line').attr({
-          class: 'crawl',
-        }),
+        class: 'crawl',
+      }),
       lineHor: main.append('line').attr({
-          class: 'crawl',
-        })
+        class: 'crawl',
+      })
     };
 
     var path = main.append('path')
@@ -118,25 +146,17 @@ function funPlotLeft() {
         'stroke': 'crimson',
       });
 
-    scope.$watch('data', function() {
-
-      path.datum(scope.data)
+    scope.$watch('fun.data', function() {
+      path.datum(fun.data)
         .attr('d', line);
-
     });
 
-    scope.$watch('point', function() {
-      dot.update(scope.point)
+    scope.$watch('fun.point', function() {
+      dot.update(fun.point);
     });
-
   }
 
-
   return {
-    scope: {
-      data: '=data',
-      point: '=point'
-    },
     restrict: 'A',
     link: link
   };

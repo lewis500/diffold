@@ -39,7 +39,6 @@ angular.module('mainApp')
       $scope.$broadcast('addDot');
     };
 
-
     FP.dragRec = function(res) {
       newDatum.x = res[0];
       newDatum.y = res[1];
@@ -105,13 +104,12 @@ angular.module('mainApp')
 angular.module('mainApp')
   .controller('funCtrl', function($scope) {
     var fun = this;
-
-    fun.data = _.range(0, 4, .125).map(function(d) {
-      return [d, Math.pow(d, 2) - 2 * d];
-    });
-
-    fun.point = [0, 1]
-
+    fun.equation = function(d) {
+      return [d, -Math.pow(d, 2) + 4 * d];
+    };
+    fun.data = _.range(0, 4, .125).map(fun.equation);
+    fun.point = [0, 1];
+    fun.goal = 2;
   });
 
 
