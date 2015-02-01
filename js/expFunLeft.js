@@ -9,14 +9,18 @@ function expFunCtrl($scope) {
   var E = this;
 
   function equation(d) {
-    return Math.exp(0.5 * d);
+    return Math.exp(.5 * d);
   }
 
   E.goal = _.range(0, 4, 0.1).map(function(t) {
     return [t, equation(t)];
   });
+  var firstDot = [0, 0]
+  firstDot.i = 0;
 
-  E.dots = [];
+  E.dots = [firstDot];
+
+  var scale = d3.scale.linear();
 
   var toFill = _.range(0, 4, 0.1).map(function(t) {
     return [t, null];
@@ -28,15 +32,34 @@ function expFunCtrl($scope) {
     });
   }
 
-  E.j = 0;
+  E.j = 1;
+
+  E.der = [];
 
   function update() {
-    if (E.dots.length < 2) return;
-    var newData = _.union(E.dots, toFill);
-    var r = regression('exponential', newData);
-    E.fit = r.points.sort(function(a, b) {
-      return a[0] - b[0];
-    })
+    // if (E.dots.length < 2) return;
+    E.der = [];
+    E.dots.forEach(function(d, i, k) {
+      if (i === k.length - 1) return;
+      var dt = k[i + 1][0] - d[0];
+      if (dt == 0) return;
+      var dy = k[i + 1][1] - d[1];
+      E.der.push([d[0], dy / dt]);
+    });
+    // scale.domain(E.dots.map(function(d) {
+    //     return d[0];
+    //   }))
+    //   .range(E.dots.map(function(d) {
+    //     return d[1];
+    //   }));
+    // E.der = _.range(0,4,.1).map(function(d){
+    //   return s
+    // });
+    // var newData = _.union(E.dots, toFill);
+    // var r = regression('exponential', newData);
+    // E.fit = r.points.sort(function(a, b) {
+    //   return a[0] - b[0];
+    // })
     $scope.$apply();
     $scope.$broadcast('move');
   }
@@ -81,7 +104,7 @@ function expFunLeft() {
 
   var y = d3.scale.linear()
     .range([height, 0])
-    .domain([0, 4])
+    .domain([0, 10])
 
   var xAxis = d3.svg.axis()
     .scale(x)
@@ -97,6 +120,24 @@ function expFunLeft() {
     })
     .y(function(d) {
       return y(d[1]);
+    });
+
+  var line2 = d3.svg.line()
+    .interpolate('monotone')
+    // .tension(.7)
+    .x(function(d) {
+      return x(d[0]);
+    })
+    .y(function(d) {
+      return y(d[1]);
+    });
+
+  var line3 = d3.svg.line()
+    .x(function(d) {
+      return d[0];
+    })
+    .y(function(d) {
+      return d[1];
     });
 
   return {
@@ -121,16 +162,46 @@ function expFunLeft() {
         .style("text-anchor", "end")
         .text("x");
 
-      svg.append("g")
+      var gYAxis = svg.append("g")
         .attr("class", "y axis")
-        .call(yAxis)
-        .append("text")
+        .call(yAxis);
+
+      gYAxis.append("text")
         .attr("class", "label")
         .attr("transform", "rotate(-90)")
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .text("y");
+
+      function sample(d) {
+        var precision = 10;
+        var path = document.createElementNS(d3.ns.prefix.svg, "path");
+        path.setAttribute("d", d);
+
+        var n = path.getTotalLength(),
+          t = [0],
+          i = 0,
+          dt = precision;
+        while ((i += dt) < n) t.push(i);
+        t.push(n);
+
+        var x0 = .1,
+          y0 = 0;
+        var delX = x.invert(t[1]);
+        return t.map(function(t, i, k) {
+          var p = path.getPointAtLength(t),
+            x1 = x.invert(p.x),
+            y1 = y.invert(p.y),
+            a = [
+              x1, (y1 -y0)/(x1 - x0)
+            ];
+          y0 = y1;
+          x0 = x1;
+          // a.t = t / n;
+          return a;
+        }).slice(1)
+      }
 
       var main = svg.append('g').attr("class", 'main');
 
@@ -158,6 +229,7 @@ function expFunLeft() {
         .on('drag', function(d) {
           if (d3.event.sourceEvent.which == 3) return;
           E.drag(d, [x.invert(d3.event.x), y.invert(d3.event.y)]);
+
         })
         .on('dragend', function(d) {
           d3.event.sourceEvent.stopPropagation(); // silence other listeners
@@ -171,21 +243,38 @@ function expFunLeft() {
         })
         .call(dragNew);
 
-      var fitPath = main.append('path')
-        .attr({
-          'stroke-width': 1,
-          fill: 'none',
-          'stroke': '#22A7F0',
-          opacity: 0.8,
-        });
+      // var fitPath = main.append('path')
+      //   .attr({
+      //     'stroke-width': 1,
+      //     fill: 'none',
+      //     'stroke': '#22A7F0',
+      //     opacity: 0.8,
+      //   });
 
       var linePath = main.append('path')
         .attr({
           'stroke-width': 1,
           fill: 'none',
           'stroke': '#D91E18',
-          opacity: 0.4,
+          // opacity: 0.4,
           'stroke-dasharray': '2,2'
+        });
+
+      var derPath = main.append('path')
+        .attr({
+          'stroke-width': 2,
+          fill: 'none',
+          'stroke': '#22A7F0',
+          opacity: 0.4,
+        });
+
+      var goalPath = main.append('path')
+        .datum(E.goal)
+        .attr({
+          'stroke-width': 1,
+          fill: 'none',
+          'stroke': '#26A65B',
+          d: line
         });
 
       var dots;
@@ -195,12 +284,18 @@ function expFunLeft() {
       scope.$on('addDot', addFun);
 
       function moveFun(d) {
+        // y.domain([0, Math.max(4, d3.max(E.dots, function(v) {
+        //   return v[1];
+        // }) + 2)]);
+        // gYAxis.call(yAxis);
         dots.data(E.dots)
           .attr('transform', function(d) {
             return 'translate(' + [x(d[0]), y(d[1])] + ')'
           });
-        fitPath.datum(E.fit).attr('d', line);
-        linePath.datum(E.dots).attr('d', line);
+        // fitPath.datum(E.fit).attr('d', line);
+        derPath.attr('d', line(sample(line2(E.dots))));
+        linePath.datum(E.dots).attr('d', line2);
+        goalPath.attr('d', line);
       }
 
       function addFun() {
@@ -261,8 +356,9 @@ function expFunLeft() {
 
         dots.exit().remove();
 
-        fitPath.datum(E.fit).attr('d', line);
-        linePath.datum(E.dots).attr('d', line);
+        // fitPath.datum(E.fit).attr('d', line);
+        derPath.attr('d', line(sample(line2(E.dots))));
+        linePath.datum(E.dots).attr('d', line2);
 
         scope.$broadcast('move');
 
