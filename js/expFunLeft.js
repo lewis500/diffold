@@ -12,19 +12,25 @@ function expFunCtrl($scope) {
     return Math.exp(.5 * d);
   }
 
-  E.goal = _.range(0, 4, 0.1).map(function(t) {
-    return [t, equation(t)];
-  });
-  var firstDot = [0, 0]
+  E.goal = _.range(0, 4, 0.1)
+    .map(function(t) {
+      return [t, 0.5*equation(t), Math.exp(.5 * t)];
+    });
+
+  var firstDot = [0, Math.exp(0)];
+
+  E.fit = [];
+
   firstDot.i = 0;
 
   E.dots = [firstDot];
 
   var scale = d3.scale.linear();
 
-  var toFill = _.range(0, 4, 0.1).map(function(t) {
-    return [t, null];
-  });
+  var toFill = _.range(0, 4, 0.1)
+    .map(function(t) {
+      return [t, null];
+    });
 
   function resort() {
     E.dots.sort(function(a, b) {
@@ -38,14 +44,14 @@ function expFunCtrl($scope) {
 
   function update() {
     // if (E.dots.length < 2) return;
-    E.der = [];
-    E.dots.forEach(function(d, i, k) {
-      if (i === k.length - 1) return;
-      var dt = k[i + 1][0] - d[0];
-      if (dt == 0) return;
-      var dy = k[i + 1][1] - d[1];
-      E.der.push([d[0], dy / dt]);
-    });
+    // E.der = [];
+    // E.dots.forEach(function(d, i, k) {
+    //   if (i === k.length - 1) return;
+    //   var dt = k[i + 1][0] - d[0];
+    //   if (dt == 0) return;
+    //   var dy = k[i + 1][1] - d[1];
+    //   E.der.push([d[0], dy / dt]);
+    // });
     // scale.domain(E.dots.map(function(d) {
     //     return d[0];
     //   }))
@@ -85,6 +91,7 @@ function expFunCtrl($scope) {
     update();
   };
 
+  $scope.$broadcast('addDot');
 }
 
 function expFunLeft() {
@@ -100,11 +107,11 @@ function expFunLeft() {
 
   var x = d3.scale.linear()
     .range([0, width])
-    .domain([0, 4])
+    .domain([0, 6])
 
   var y = d3.scale.linear()
     .range([height, 0])
-    .domain([0, 10])
+    .domain([0, 6])
 
   var xAxis = d3.svg.axis()
     .scale(x)
@@ -123,7 +130,7 @@ function expFunLeft() {
     });
 
   var line2 = d3.svg.line()
-    .interpolate('monotone')
+    .interpolate('cardinal')
     // .tension(.7)
     .x(function(d) {
       return x(d[0]);
@@ -194,7 +201,7 @@ function expFunLeft() {
             x1 = x.invert(p.x),
             y1 = y.invert(p.y),
             a = [
-              x1, (y1 -y0)/(x1 - x0)
+              x1, (y1 - y0) / (x1 - x0), y1
             ];
           y0 = y1;
           x0 = x1;
@@ -217,6 +224,9 @@ function expFunLeft() {
         })
         .on('drag', function() {
           E.drag(newDatum, [x.invert(d3.event.x), y.invert(d3.event.y)]);
+          scope.$apply(function() {
+            E.fit = sample(line2(E.dots));
+          });
         })
         .on('dragend', function(d) {
           d3.event.sourceEvent.stopPropagation(); // silence other listeners
@@ -229,7 +239,9 @@ function expFunLeft() {
         .on('drag', function(d) {
           if (d3.event.sourceEvent.which == 3) return;
           E.drag(d, [x.invert(d3.event.x), y.invert(d3.event.y)]);
-
+          scope.$apply(function() {
+            E.fit = sample(line2(E.dots));
+          });
         })
         .on('dragend', function(d) {
           d3.event.sourceEvent.stopPropagation(); // silence other listeners
@@ -243,20 +255,11 @@ function expFunLeft() {
         })
         .call(dragNew);
 
-      // var fitPath = main.append('path')
-      //   .attr({
-      //     'stroke-width': 1,
-      //     fill: 'none',
-      //     'stroke': '#22A7F0',
-      //     opacity: 0.8,
-      //   });
-
       var linePath = main.append('path')
         .attr({
           'stroke-width': 1,
           fill: 'none',
           'stroke': '#D91E18',
-          // opacity: 0.4,
           'stroke-dasharray': '2,2'
         });
 
@@ -283,20 +286,19 @@ function expFunLeft() {
 
       scope.$on('addDot', addFun);
 
+      addFun();
+
       function moveFun(d) {
-        // y.domain([0, Math.max(4, d3.max(E.dots, function(v) {
-        //   return v[1];
-        // }) + 2)]);
-        // gYAxis.call(yAxis);
         dots.data(E.dots)
           .attr('transform', function(d) {
             return 'translate(' + [x(d[0]), y(d[1])] + ')'
           });
-        // fitPath.datum(E.fit).attr('d', line);
-        derPath.attr('d', line(sample(line2(E.dots))));
         linePath.datum(E.dots).attr('d', line2);
+
+        derPath.attr('d', line(E.fit));
         goalPath.attr('d', line);
       }
+
 
       function addFun() {
         dots = main.selectAll('.dot')
@@ -355,12 +357,6 @@ function expFunLeft() {
           });
 
         dots.exit().remove();
-
-        // fitPath.datum(E.fit).attr('d', line);
-        derPath.attr('d', line(sample(line2(E.dots))));
-        linePath.datum(E.dots).attr('d', line2);
-
-        scope.$broadcast('move');
 
       }
 

@@ -7,6 +7,10 @@ h1,h2,h3,h4,h5{
   font-family: 'PT Sans'
 }
 
+strong {
+  font-weight: 700;
+}
+
 text {
 	font-family: 'PT Sans', sans-serif;
 }
@@ -35,3 +39,17 @@ text {
   stroke: #333;
 }
 
+.slope {
+  stroke: blue;
+  fill: none;
+  stroke-width: 3px;
+  opacity: 0.4;
+}
+
+.goal{
+  fill: none;
+  stroke: blue;
+  opacity: 0.5;
+  stroke-dasharray: 2,2;
+  stroke-width: 1px;
+}

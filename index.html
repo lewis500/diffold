@@ -3,12 +3,11 @@
 
 <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="style/main.css">
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="bower_components/d3/d3.js" charset="utf-8"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/lodash/lodash.min.js"></script>
 <script src="bower_components/regression-js/build/regression.min.js"></script>
-
-<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], skipTags: ["script","noscript","style","textarea","code"] } });
@@ -24,56 +23,87 @@
   </marker>
   <div class='col-md-7'>
 
-    <h3>Introduction</h3>
+    <!-- <h3>Introduction</h3> -->
     <blockquote class="blockquote">
-      As long as nineteenth-centry spellbinders of science could point to the planets and the Milky Way, or could descant on a piece of chalk to unfold the history of the earth, they held their audience. But with nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
+      As long as nineteenth-centry spellbinders of science could point to the planets and the Milky Way,...they held their audience. But with nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
       <footer>Jacques Barzun,
         <cite title="The Use and Abuse of Art">The Use and Abuse of Art (1974)</cite>
       </footer>
     </blockquote>
 
+    <p>The phrase "differential equation" is an intimidating pair of science words, like "flux capacitor" or "tachyon field." If what Barzun says is true, just looking at them melted someone. But fear not. The goal here is to make them more friendly, to show off one of the most wonderful tricks we have to interpret and redesign the world.</p>
 
-    <p>The phrase "differential equation" is intimidating. It's a combination of two science words, like "flux capacitor" and "tachyon field." If what Barzun says is true, the mere sight of them melted someone.</p>
-    <p>But fear not. Differential equations are your friends. The goal here is not to help anyone pass "Control of Distributed Parameter Systems." It is to show off one of the most wonderful tricks we have to comprehend and design the world around us.</p>
-
-    <blockquote>
+<!--     <blockquote>
       ...the #1 math tool for solving problems in physics, engineering, telemetry, automation, and all manner of hard science.
       <footer>David Foster Wallace,
         <cite title="Everything and More">Everything and More</cite>
       </footer>
-    </blockquote>
+    </blockquote> -->
 
-    <p>A differential equation is a relationship that involves the derivative (i.e., the slope) of a function &mdash; such as $f'(t) = 2t - 5 $ or $ f''(t) - 3f'(t) + 2f(t)=3. $ Solving a differential equation means finding a function that makes it true. Basically, you start out knowing some fact about the derivative of a mystery function, and you ask yourself, "For which function $ f (t) $ is this fact about its derivative true?"</p>
-    <!-- <p></p> -->
+    <h3>Definition</h3>
 
-    <p>You're probably used to equations like $ t^2 +t = 2 $. Here, "solving the equation" means finding numbers that make the equation true. Below, let the left-hand side be the function $ L(t) ≡ t^2 + t$ and change $ t $ until $ L(t) = 2 $.</p>
+    <p>You're probably used to regular old equations like $ t^2 +t = 2 $. Here, "solving the equation" means finding numbers that make the statement true. Below, change $ t $ until it's true that $ t^2 + t = 2 $.</p>
 
     <div ng-controller="funCtrl as fun" class='row'>
       <div fun-plot-left class='col-xs-8'></div>
     </div>
 
-    <div ng-controller="slopeCtrl" class='row'>
+    <p>A differential equation, by contrast, is a statement that involves the derivative of a function, and <strong>solving a differential equation means finding a function that makes the statement true.</strong> The answer is not a number; it's a factory that takes numbers and spits new ones out.</p>
+
+    <!-- <p>Basically, you start out knowing some fact like $y' = 2t$ or $y' = k y$, and you ask, "For which functions $y(t)$ is this true?"</p> -->
+
+<!--     <h3>Derivatives</h3>
+
+    <p>Let's brush up on derivatives. The derivative of $y(t)$ at $t$ like its slope. Below, hover over the plot below to draw the derivative of $y(t)\equiv t^2 +t$. The slope appears as the length of a tangent line.</p>
+    <div ng-controller='derCtrl as der' class='row'>
+      <div der-der class='col-xx-6'></div>
+    </div> -->
+
+    <h3>Quadratic Example</h3>
+
+    <p>Below, your job is to find an equation $y(t)$ whose slope is the green line $2t + 2$. Click the plane to draw your function point-by-point, letting the chart fill the gaps.</p>
+
+    INSERT CHART OF THE QUADRATIC EQUATION
+
+    <!-- <p></p> -->
+
+    <p>The solution to this equation is $t^2+2t +C$, where $C$ can be any number. To that $C$ is open-ended, drag this slider to shift the dots up and down, noting the derivative stays the same.</p>
+
+    <h3>One Equation to Rule Them All</h3>
+
+    <p>Suppose you have $1$ in debt. If that amount grows constantly at rate $k$, how much do you owe at time $t$? To answer this, we need to solve this differential equation:</p>
+
+    $$
+    y' = k\cdot y.
+    $$
+
+    <p>This says, "How fast $y$ changes depends on $y$." When we solve it, we'll have the function $y(t)$ we want.</p>
+    <p>Solve the diffEQ below like you did above, except this time, <strong>the horizontal axis of the right plot represents $y'$,</strong> rather than $t$ like it did before. The diffEQ is the straight line $ y = y'/k $, which is equivalent to $y'=k \cdot y$</p>
+
+
+    <!--     <div ng-controller="slopeCtrl" class='row'>
       <div slope-left class='col-xs-6'></div>
       <div slope-right class='col-xs-6'></div>
-    </div>
+    </div> -->
 
     haasdf
 
     <div ng-controller="expFunCtrl as E" class='row'>
       <div exp-fun-left class='col-xs-6'></div>
+      <div exp-fun-right class='col-xs-6'></div>
     </div>
-
 
     INSERT PLOT
 
-    <p>Instead of specific numbers, the solutions to differential equations are functions. </p>
+    <!-- <p>When would you want to solve for a function? Often, when you want to predict something. For example, suppose you pulled the block below to the right or left and then let go. Where will the block be in 5 seconds? To answer, you'll need a function that gives the block's location at any time $ t $.</p> -->
 
-    \[ f'(t) = 2t - 5. \, \,\,\,\, (\mathcal{A}) \]
+    <p>Now let's use differential equations to solve a problem. Suppose that you launch a roller skate in some direction with velocty $v_0$. As it rolls, friction slows it down according to the relationship</p>
 
-    <p>Now, on the plot below, see if you can draw a function whose derivative satisfies $ \mathcal{A}$. To get started, choose the general form of the function and then click some dots. We'll fill in the best-fit function.</p>
+    $$ \dot v(t) = -kv(t) $$
 
+    <p>that is, the rate its velocity changes is negatively related to the velocity. So the faster something moves, the faster it slows down.</p>
 
-    <p>When would you want to solve for a function? One of the most common cases is a situation where you want to predict something. For example, suppose you pulled the block below to the right or left and then let go. Where will the block be in 5, 6 or 7 seconds? To answer, you'll need a function like $ L(t) $ that gives the block's location for any time, $ t $.</p>
+    <p>The solution to this equation is $v(t) = v_0 \cdot e^{-kt}.$</p>
 
   </div>
 
@@ -84,11 +114,13 @@
 angular.module('mainApp', []);
 </script>
 <script type="text/javascript" src='js/controllers.js'></script>
-<script type="text/javascript" src='js/funPickerLeft.js'></script>
-<script type="text/javascript" src='js/funPickerRight.js'></script>
+<!-- <script type="text/javascript" src='js/funPickerLeft.js'></script> -->
+<!-- <script type="text/javascript" src='js/funPickerRight.js'></script> -->
 <script type="text/javascript" src='js/funPlotLeft.js'></script>
-<script type="text/javascript" src='js/barOne.js'></script>
-<script type="text/javascript" src='js/spring.js'></script>
-<script type="text/javascript" src='js/slopeLeft.js'></script>
-<script type="text/javascript" src='js/slopeRight.js'></script>
+<script type="text/javascript" src='js/derPlot.js'></script>
+<!-- <script type="text/javascript" src='js/barOne.js'></script> -->
+<!-- <script type="text/javascript" src='js/spring.js'></script> -->
+<!-- <script type="text/javascript" src='js/slopeLeft.js'></script> -->
+<!-- <script type="text/javascript" src='js/slopeRight.js'></script> -->
 <script type="text/javascript" src='js/expFunLeft.js'></script>
+<script type="text/javascript" src='js/expFunRight.js'></script>

@@ -1,6 +1,34 @@
+CONVERT TO OOP
+
+
+
+
+
 
 SHORT TERM
-make the derivative come out for the dot you're dragging around, and have the bar come up to it
+
+
+LONG TERM
+
+do double plots for hte quadratic one, too
+
+have bars go up for when you're dragging things around, to show the link between the two plots
+
+whenever you reference htings, color them with tspans. use a light shading to distinguish the left and right plots.
+
+use a ggplot style background for the plots.
+
+
+make different options for the picker plot, for each plot, have a button that reveals the answer
+when the answer is revealed, show it as a mathjax equation
+
+
+
+
+
+
+
+
 
 
 use defs to mask out the other parts of the plots
