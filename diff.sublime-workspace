@@ -1,0 +1,1491 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"multipl",
+				"multiply-effect"
+			],
+			[
+				"width",
+				"widthResize"
+			],
+			[
+				"as",
+				"assetCalc"
+			],
+			[
+				"D",
+				"Dot"
+			],
+			[
+				"get",
+				"getSorted"
+			],
+			[
+				"savings",
+				"savingsCtrl"
+			],
+			[
+				"gX",
+				"gXAxis"
+			],
+			[
+				"gY",
+				"gYAxis"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"g",
+				"gYaxis"
+			],
+			[
+				"drag",
+				"dragstart"
+			],
+			[
+				"der",
+				"derivative"
+			],
+			[
+				"stroke",
+				"stroke-width"
+			],
+			[
+				"amoe",
+				"amoeba"
+			],
+			[
+				"eige",
+				"__eigenvalue__"
+			],
+			[
+				"eigen",
+				"eigenvector"
+			],
+			[
+				"add",
+				"addRepeater"
+			],
+			[
+				"fu",
+				"fuColors"
+			],
+			[
+				"range",
+				"rangeBand"
+			],
+			[
+				"dire",
+				"verbose_directive	AngularJS"
+			],
+			[
+				"dier",
+				"verbose_directive	AngularJS"
+			],
+			[
+				"bower",
+				"bower_components"
+			],
+			[
+				"wish",
+				"wishTime"
+			],
+			[
+				"pre",
+				"xPrecision"
+			],
+			[
+				"set",
+				"setPhiVickrey"
+			],
+			[
+				"phi",
+				"phiVickrey"
+			],
+			[
+				"find",
+				"findVel"
+			],
+			[
+				"l",
+				"last"
+			],
+			[
+				"num",
+				"numPatches"
+			],
+			[
+				"tick",
+				"tickEvent"
+			],
+			[
+				"del",
+				"delLeft"
+			],
+			[
+				"eval",
+				"evalToll"
+			],
+			[
+				"eva",
+				"evalToll"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"queue",
+				"queueTime"
+			],
+			[
+				"selec",
+				"selectAll"
+			],
+			[
+				"direction",
+				"directionsService"
+			],
+			[
+				"plo",
+				"plotit"
+			],
+			[
+				"lat",
+				"LatLng"
+			],
+			[
+				"exit",
+				"exitStats"
+			],
+			[
+				"fd",
+				"fdi	function(d, i) { return d; }"
+			],
+			[
+				"y",
+				"yAxis"
+			],
+			[
+				"ma",
+				"margin	margin convention"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"con",
+				"controller	AngularJS"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/lewis/Documents/retire/js/incomeDer.js",
+			"settings":
+			{
+				"buffer_size": 8120,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/controllers.js",
+			"settings":
+			{
+				"buffer_size": 2656,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/lewis/Documents/retire/js/controllers.js",
+			"settings":
+			{
+				"buffer_size": 5191,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "style/main.css",
+			"settings":
+			{
+				"buffer_size": 2625,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"key",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"pret",
+				"Preferences: Package Control Settings – User"
+			],
+			[
+				"prettt",
+				"HTMLPrettify: Set Keyboard Shortcuts"
+			],
+			[
+				"Prett",
+				"HTMLPrettify"
+			],
+			[
+				"prefer",
+				"HTMLPrettify: Set Prettify Preferences"
+			],
+			[
+				"incom",
+				"AngularJS: Toggle - Disable Built-in Element Completions"
+			],
+			[
+				"prtt",
+				"Preferences: Settings - Default"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"clear",
+				"LaTeX-Plus: Clean auxiliary files"
+			],
+			[
+				"latex",
+				"LaTeX-Plus: Clean auxiliary files"
+			],
+			[
+				"pr",
+				"Preferences: Settings - User"
+			],
+			[
+				"pett",
+				"Preferences: Settings - Default"
+			],
+			[
+				"update",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"pre",
+				"Preferences: Settings - User"
+			],
+			[
+				"rett",
+				"HTMLPrettify"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"pretty",
+				"HTMLPrettify: Set Prettify Preferences"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"snippet",
+				"Snippet: function(d, i) { return d; }"
+			]
+		],
+		"width": 530.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/lewis/Documents/diff",
+		"/Users/lewis/Documents/retire",
+		"/Users/lewis/Documents/retire/js"
+	],
+	"file_history":
+	[
+		"/Users/lewis/Documents/diff/index.html",
+		"/Users/lewis/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/lewis/Documents/diff/js/expFunLeft.js",
+		"/Users/lewis/Documents/diff/todo",
+		"/Users/lewis/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/lewis/Documents/diff/js/controllers.js",
+		"/Users/lewis/Documents/diff/style/main.css",
+		"/Users/lewis/Documents/retire/js/controllers.js",
+		"/Users/lewis/Documents/retire/js/incomeDer.js",
+		"/Users/lewis/Documents/diff/js/expFunRight.js",
+		"/Users/lewis/Documents/diff/text",
+		"/Users/lewis/Documents/retire/index.html",
+		"/Users/lewis/Documents/retire/js/savingsDer.js",
+		"/Users/lewis/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/Users/lewis/Documents/retire/js/temp.html",
+		"/Users/lewis/Documents/retire/js/bonusDer.js",
+		"/Users/lewis/Documents/retire/js/barTemplate.html",
+		"/Users/lewis/Documents/retire/bower_components/nouislider/tests/link_multiple.js",
+		"/Users/lewis/Documents/retire/todo",
+		"/Users/lewis/Documents/retire/js/assetDer.js",
+		"/Users/lewis/Library/Application Support/Sublime Text 3/Packages/HTML-CSS-JS Prettify/Default (OSX).sublime-keymap",
+		"/Users/lewis/Documents/housing/notes",
+		"/Users/lewis/Documents/housing/todo",
+		"/Users/lewis/Documents/housing/notes-nonecon",
+		"/Users/lewis/Downloads/CSVFile - CSVFile.csv",
+		"/Users/lewis/Documents/housing/thoughts",
+		"/Users/lewis/Documents/paper/bottleneck23 (3).tex",
+		"/Users/lewis/Documents/housing/take3.out",
+		"/Users/lewis/Documents/retire/multiply/data.tsv",
+		"/Users/lewis/Documents/retire/style/main.css",
+		"/Users/lewis/Documents/retire/bower_components/nouislider/tests/slider_events.js",
+		"/Users/lewis/Documents/retire/bower_components/jquery/src/var/rnotwhite.js",
+		"/Users/lewis/Documents/retire/bower_components/angular-nouislider/src/nouislider.js",
+		"/Users/lewis/Documents/retire/bower_components/lodash/LICENSE.txt",
+		"/Users/lewis/Documents/retire/bower_components/regression-js/src/regression.js",
+		"/Users/lewis/Documents/retire/bower_components/regression-js/index.js",
+		"/Users/lewis/Library/Application Support/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/Users/lewis/Documents/explained-visually/client/explanations/eigenvectors-and-eigenvalues/index.jade",
+		"/Users/lewis/Documents/explained-visually/node_modules/gulp/node_modules/gulp-util/lib/isNull.js",
+		"/Users/lewis/Documents/housing/california code",
+		"/Users/lewis/Documents/retire/bower_components/angular/angular.js",
+		"/Users/lewis/Documents/retire/bower_components/angular-nouislider/.bower.json",
+		"/Users/lewis/Documents/retire/bower_components/angular/angular-csp.css",
+		"/Users/lewis/Documents/retire/bower_components/bootstrap-material-design/sass/_variables.scss",
+		"/Users/lewis/Documents/retire/bower_components/bootstrap-material-design/dist/test.html",
+		"/Users/lewis/Documents/retire/text",
+		"/Users/lewis/Documents/retire/bower.json",
+		"/Users/lewis/Documents/retire/bower_components/regression-js/Gruntfile.js",
+		"/Users/lewis/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/lewis/Documents/retire/bower_components/angular/README.md",
+		"/Users/lewis/Documents/retire/bower_components/angular/package.json",
+		"/Users/lewis/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/lewis/Documents/retire/bower_components/d3/d3.js",
+		"/Users/lewis/Documents/lewislehe/docs/shower.html",
+		"/Users/lewis/Documents/lewislehe/seminar/bower_components/jquery/MIT-LICENSE.txt",
+		"/Users/lewis/Documents/lewislehe/seminar/bower_components/bootstrap/less/responsive-embed.less",
+		"/Users/lewis/Documents/lewislehe/seminar/bower_components/jquery/src/selector.js",
+		"/Users/lewis/Documents/lewislehe/seminar/index.html",
+		"/Users/lewis/Documents/lewislehe/seminar/bower_components/d3/.spmignore",
+		"/Users/lewis/Documents/lewislehe/seminar/bower.json",
+		"/Users/lewis/Documents/setosa.io/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/minimatch/test/brace-expand.js",
+		"/Users/lewis/Documents/setosa.io/public/csv-fingerprint/example1.csv",
+		"/Users/lewis/Documents/setosa.io/node_modules/gulp/node_modules/gulp-util/lib/isNull.js",
+		"/Users/lewis/Documents/setosa.io/blog/index.html",
+		"/Users/lewis/Documents/diff/js/derPlot.js",
+		"/Users/lewis/Documents/diff/js/funPickerLeft.js",
+		"/Users/lewis/Documents/diff/js/funPickerRight.js",
+		"/Users/lewis/Documents/diff/js/funPlotLeft.js",
+		"/Users/lewis/Documents/diff/js/slopeLeft.js",
+		"/Users/lewis/Documents/diff/bower_components/d3/d3.js",
+		"/Users/lewis/Documents/diff/bower_components/lodash/bower.json",
+		"/Users/lewis/Documents/diff/bower_components/lodash/LICENSE.txt",
+		"/Users/lewis/Documents/diff/bower_components/regression-js/Gruntfile.js",
+		"/Users/lewis/Documents/diff/bower_components/regression-js/src/regression.js",
+		"/Users/lewis/Documents/diff/js/plot2.js",
+		"/Users/lewis/Desktop/plans/conferences",
+		"/Users/lewis/Documents/retire/bower_components/d3/CONTRIBUTING.md",
+		"/Users/lewis/Documents/diff/js/barOne.js",
+		"/Users/lewis/Documents/diff/js/slopeRight.js",
+		"/Users/lewis/Documents/diff/js/spring.js",
+		"/Users/lewis/Documents/diff/bower_components/d3/CONTRIBUTING.md",
+		"/Users/lewis/Documents/diff/bower_components/regression-js/.npmignore",
+		"/Users/lewis/Documents/housing/housing.ipynb",
+		"/Users/lewis/Documents/diff/npm-debug.log",
+		"/Users/lewis/Documents/diff/js/plotRight.js",
+		"/Users/lewis/Documents/diff/js/dotPlot.js",
+		"/Users/lewis/Documents/diff/js/plotRight",
+		"/Users/lewis/Documents/diff/bower.json",
+		"/Users/lewis/Documents/diff/js/directives.js",
+		"/Users/lewis/Documents/diff/js/plot.js",
+		"/notes",
+		"/Users/lewis/Desktop/plans/paper",
+		"/Users/lewis/Desktop/plans/untitled",
+		"/Users/lewis/Documents/explained-visually/client/pages/index.jade",
+		"/Users/lewis/Documents/explained-visually/build/ev/index.html",
+		"/Users/lewis/Documents/explained-visually/node_modules/gulp-jade/node_modules/gulp-util/node_modules/dateformat/node_modules/meow/node_modules/.bin/indent-string",
+		"/Users/lewis/Documents/explained-visually/node_modules/gulp-jade/.jshintrc",
+		"/Users/lewis/Documents/explained-visually/node_modules/jade/.npmignore",
+		"/Users/lewis/Documents/explained-visually/node_modules/jade/jade.js",
+		"/Users/lewis/Documents/explained-visually/node_modules/.bin/jade",
+		"/Users/lewis/Desktop/New York City and Portland are to transit what the",
+		"/Users/lewis/Documents/a5/myscript.py",
+		"/Users/lewis/Documents/story/story.tex",
+		"/Users/lewis/Desktop/plans/story",
+		"/Users/lewis/Documents/paper/bottleneck25.tex",
+		"/Users/lewis/Google Drive/263/263Project/Proj263.tex",
+		"/Users/lewis/Google Drive/263/263Project/table.tex",
+		"/Users/lewis/Documents/paper/asdf.py",
+		"/Users/lewis/Documents/paper/bottleneck24.tex",
+		"/Users/lewis/Documents/server/todo server",
+		"/Users/lewis/Documents/server/tooltip.html",
+		"/Users/lewis/Documents/server/distance-1.csv",
+		"/Users/lewis/Documents/server/bower_components/jquery-ui/ui/i18n/datepicker-id.js",
+		"/Users/lewis/Documents/server/js/DataService.js",
+		"/Users/lewis/Google Drive/263/263Project/tt_3.csv",
+		"/Users/lewis/Google Drive/263/263Project/tt_2.csv",
+		"/Users/lewis/Google Drive/263/263Project/tt_4.csv",
+		"/Users/lewis/Google Drive/263/263Project/tt_5.csv",
+		"/Users/lewis/Documents/bart/csv/times3.csv",
+		"/Users/lewis/Documents/parking/js/angularStuff/infrastructure.js",
+		"/Users/lewis/Documents/parking/js/angularStuff/controller.js",
+		"/Users/lewis/Documents/parking/index.html",
+		"/Users/lewis/Google Drive/263/Untitled0.ipynb",
+		"/Users/lewis/Documents/parking/js/angularStuff/car.js",
+		"/Users/lewis/Documents/parking/js/angularStuff/bar.js",
+		"/Users/lewis/Documents/parking/styles/main.css",
+		"/Users/lewis/Documents/parking/bower_components/flatui/less/modules/checkbox-and-radio.less",
+		"/Users/lewis/Documents/parking/bower_components/bootstrap/less/utilities.less"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"connec",
+			"the solution",
+			"into a",
+			"accor",
+			"differe",
+			"y(",
+			"comma",
+			"cmd",
+			"wrap",
+			"left ",
+			"the left plot",
+			"span",
+			"below ",
+			"depends on",
+			".fit",
+			"refit",
+			"fit",
+			"dots",
+			"fit",
+			"d[2]",
+			"drag",
+			"addfun",
+			"newd",
+			"linepath",
+			"goalPath",
+			"derPath",
+			"path",
+			"drag",
+			"dragre",
+			"drag",
+			"newda",
+			"var dots",
+			"var dot",
+			"var d",
+			"var new",
+			"d[1]",
+			"d[0]",
+			"der",
+			"change",
+			"getnext",
+			"regre",
+			"to ans",
+			"now ",
+			"growth of",
+			"what this s",
+			"what this is",
+			"function",
+			"solution to",
+			"here is",
+			"make it",
+			"gaps",
+			"fill the",
+			"derivative of",
+			"stron",
+			"makes it",
+			"remember",
+			"mere",
+			"pt",
+			"solving a",
+			"before",
+			"goal",
+			"to save",
+			"savings rate",
+			"assetca",
+			"bonus",
+			"timeunits",
+			"var M",
+			"unit",
+			"var svg",
+			"assets2",
+			"increme",
+			"bonus",
+			"increme",
+			"bonus",
+			"assetca",
+			"move",
+			"drag",
+			"watch",
+			"increm",
+			"howMuch",
+			"ror",
+			"i ==0",
+			"starting",
+			"ror",
+			"clip",
+			"res",
+			"clip",
+			"back",
+			"bg",
+			"var main",
+			"var ma",
+			"cli",
+			"bedroo",
+			"glae",
+			"galeser",
+			"no",
+			"powel",
+			"chicago",
+			"bedroo",
+			"bedroom",
+			"bedro",
+			"code",
+			"glae",
+			"chicago",
+			"bento",
+			"bent",
+			"third",
+			"2015,",
+			"\"",
+			"DE BL",
+			"strength",
+			"streng",
+			"gridlock",
+			"displays",
+			"gridlock",
+			"bars",
+			"'in",
+			"goal",
+			"shad",
+			"body",
+			"div.sl",
+			"main.cs",
+			"in1",
+			"multipl",
+			"100",
+			"200",
+			"attr",
+			"years"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"d.y",
+			"d.x",
+			"2015",
+			"",
+			".S",
+			".id",
+			"E.",
+			"IN.",
+			"inc.",
+			"fun",
+			"$",
+			"numbers",
+			"subsection",
+			"Uni.exits",
+			"2,",
+			"driver",
+			"minute",
+			"$Uni.findVel",
+			"user",
+			"xs",
+			"$scope.",
+			"$Uni",
+			"Uni.",
+			"Uni",
+			".v",
+			".q",
+			".v",
+			"R",
+			"Universe",
+			"num",
+			"3",
+			"4.98",
+			"4.75",
+			"/4.6",
+			"5",
+			"4.339",
+			"4.3",
+			"4.5",
+			"ϕ.",
+			"cumArr",
+			"btn-danger",
+			"isCollapsed4",
+			"100",
+			"40",
+			"setPatch",
+			";",
+			"",
+			"delta",
+			"A.des",
+			"wishTime",
+			"delta",
+			"A",
+			")",
+			"(",
+			"sublime_text",
+			"md",
+			"500",
+			"400",
+			"col-xs",
+			"θ",
+			"ϕ.",
+			"ϕ",
+			"θ",
+			"tickRate",
+			"addRate",
+			"pickExit",
+			"tick"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/lewis/Documents/retire/js/incomeDer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5049,
+								3328
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 339.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/lewis/Documents/retire/js/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5191,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2130,
+								1953
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 938.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "style/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2625,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "style/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2625,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.608303249097,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"output.find_results":
+	{
+		"height": 100.0
+	},
+	"project": "diff.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"todo",
+				"diff/todo"
+			],
+			[
+				"main",
+				"diff/style/main.css"
+			],
+			[
+				"control",
+				"diff/js/controllers.js"
+			],
+			[
+				"exp",
+				"diff/js/expFunLeft.js"
+			],
+			[
+				"incom",
+				"retire/js/incomeDer.js"
+			],
+			[
+				"contr",
+				"retire/js/controllers.js"
+			],
+			[
+				"expf",
+				"diff/js/expFunRight.js"
+			],
+			[
+				"ind",
+				"diff/index.html"
+			],
+			[
+				"contro",
+				"retire/js/controllers.js"
+			],
+			[
+				"sav",
+				"js/savingsDer.js"
+			],
+			[
+				"temp.h",
+				"js/temp.html"
+			],
+			[
+				"bar",
+				"js/barDer.js"
+			],
+			[
+				"temp",
+				"js/barTemplate.html"
+			],
+			[
+				"te",
+				"js/barTemplate.html"
+			],
+			[
+				"con",
+				"js/controllers.js"
+			],
+			[
+				"asset",
+				"js/assetDer.js"
+			],
+			[
+				"tdo",
+				"todo"
+			],
+			[
+				"notes",
+				"notes"
+			],
+			[
+				"no",
+				"notes-nonecon"
+			],
+			[
+				"code",
+				"california code"
+			],
+			[
+				"note",
+				"notes-nonecon"
+			],
+			[
+				"iz",
+				"iz.bib"
+			],
+			[
+				"thought",
+				"thoughts"
+			],
+			[
+				"though",
+				"thoughts"
+			],
+			[
+				"income",
+				"js/incomeDer.js"
+			],
+			[
+				"inc",
+				"js/incomeDer.js"
+			],
+			[
+				"in",
+				"index.html"
+			],
+			[
+				"ass",
+				"js/assetDer.js"
+			],
+			[
+				"savi",
+				"js/savingsDer.js"
+			],
+			[
+				"as",
+				"js/assetDer.js"
+			],
+			[
+				"controll",
+				"js/controllers.js"
+			],
+			[
+				"savin",
+				"js/savingsDer.js"
+			],
+			[
+				"thou",
+				"thoughts"
+			],
+			[
+				"calif",
+				"california code"
+			],
+			[
+				"angul",
+				"bower_components/angular/angular.js"
+			],
+			[
+				"asse",
+				"js/assetDer.js"
+			],
+			[
+				"ma",
+				"style/main.css"
+			],
+			[
+				"asv",
+				"bower_components/bootstrap-material-design/sass/_variables.scss"
+			],
+			[
+				"templ",
+				"js/barTemplate.html"
+			],
+			[
+				"tem",
+				"js/barTemplate.html"
+			],
+			[
+				"saving",
+				"js/savingsDer.js"
+			],
+			[
+				"incomed",
+				"js/incomeDer.js"
+			],
+			[
+				"savings",
+				"js/savingsDer.js"
+			],
+			[
+				"rett",
+				"bower_components/lodash/LICENSE.txt"
+			],
+			[
+				"tod",
+				"todo"
+			],
+			[
+				"semin",
+				"seminar/index.html"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"non",
+				"notes-nonecon"
+			],
+			[
+				"expfun",
+				"js/expFunLeft.js"
+			],
+			[
+				"dot",
+				"js/derPlot.js"
+			],
+			[
+				"funpic",
+				"js/funPickerLeft.js"
+			],
+			[
+				"funp",
+				"js/funPlotLeft.js"
+			],
+			[
+				"main.",
+				"style/main.css"
+			],
+			[
+				"slope",
+				"js/slopeLeft.js"
+			],
+			[
+				"der",
+				"js/derPlot.js"
+			],
+			[
+				"funpl",
+				"js/funPlotLeft.js"
+			],
+			[
+				"d3.js",
+				"bower_components/d3/d3.js"
+			],
+			[
+				"plot",
+				"js/plot2.js"
+			],
+			[
+				"thoughts",
+				"thoughts"
+			],
+			[
+				"regre",
+				"bower_components/regression-js/src/regression.js"
+			],
+			[
+				"econ",
+				"notes-nonecon"
+			],
+			[
+				"fun",
+				"js/funPickerLeft.js"
+			],
+			[
+				"func",
+				"js/funPickerLeft.js"
+			],
+			[
+				"funpi",
+				"js/funPickerRight.js"
+			],
+			[
+				"slopel",
+				"js/slopeLeft.js"
+			],
+			[
+				"slopele",
+				"js/slopeLeft.js"
+			],
+			[
+				"funpick",
+				"js/funPickerLeft.js"
+			],
+			[
+				"funpicker",
+				"js/funPickerRight.js"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"funpickerleft",
+				"js/funPickerLeft.js"
+			],
+			[
+				"dotpl",
+				"js/dotPlot.js"
+			],
+			[
+				"dotp",
+				"js/dotPlot.js"
+			],
+			[
+				"pl",
+				"js/plot2.js"
+			],
+			[
+				"plo",
+				"js/plot2.js"
+			],
+			[
+				"baron",
+				"js/barOne.js"
+			],
+			[
+				"baro",
+				"js/barOne.js"
+			],
+			[
+				"main.css",
+				"style/main.css"
+			],
+			[
+				"deri",
+				"js/directives.js"
+			],
+			[
+				"deriv",
+				"js/directives.js"
+			],
+			[
+				"index.jade",
+				"client/explanations/eigenvectors-and-eigenvalues/index.jade"
+			],
+			[
+				"datas",
+				"js/DataService.js"
+			],
+			[
+				"bottl",
+				"~/Documents/paper/bottleneck24.tex"
+			],
+			[
+				"infra",
+				"js/angularStuff/infrastructure.js"
+			],
+			[
+				"car.js",
+				"js/angularStuff/car.js"
+			],
+			[
+				"bar.js",
+				"js/angularStuff/bar.js"
+			],
+			[
+				"plot.js",
+				"js/angularStuff/plot.js"
+			],
+			[
+				"infras",
+				"js/angularStuff/infrastructure.js"
+			],
+			[
+				"bar-ch",
+				"bower_components/jquery-ui/ui/i18n/datepicker-fr-CH.js"
+			],
+			[
+				"",
+				"js/angularStuff/infrastructure.js"
+			],
+			[
+				"blogpo",
+				"blogpost"
+			],
+			[
+				"style",
+				"styles/slider.css"
+			],
+			[
+				"bottleneck23.tex",
+				"bottleneck23.tex"
+			],
+			[
+				"linech",
+				"js/lineChart.js"
+			],
+			[
+				"datase",
+				"js/DataService.js"
+			],
+			[
+				"gantt",
+				"js/gantt.js"
+			],
+			[
+				"ifnra",
+				"bower_components/bootstrap/less/mixins/grid-framework.less"
+			],
+			[
+				"style.",
+				"styles/main.css"
+			],
+			[
+				"line",
+				"scripts/lineChart.js"
+			],
+			[
+				"data",
+				"scripts/DataService.js"
+			],
+			[
+				"inp",
+				"partials/inputs.html"
+			],
+			[
+				"mfd",
+				"scripts/MFD.js"
+			],
+			[
+				"server",
+				"server.sublime-project"
+			],
+			[
+				"toll",
+				"scripts/tollChart.js"
+			],
+			[
+				"input",
+				"partials/inputs.html"
+			],
+			[
+				"contorll",
+				"scripts/controller.js"
+			],
+			[
+				"cotnroll",
+				"scripts/controller.js"
+			],
+			[
+				"inpu",
+				"partials/inputs.html"
+			],
+			[
+				"inputs",
+				"partials/inputs.html"
+			],
+			[
+				"tollch",
+				"scripts/tollChart.js"
+			],
+			[
+				"da",
+				"scripts/DataService.js"
+			],
+			[
+				"bar2",
+				"scripts/bar2.js"
+			],
+			[
+				"cars",
+				"scripts/bar.js"
+			],
+			[
+				"di",
+				"scripts/distance.js"
+			],
+			[
+				"xt",
+				"scripts/XT.js"
+			],
+			[
+				"velch",
+				"scripts/velChart.js"
+			],
+			[
+				"lin",
+				"scripts/lineChart.js"
+			],
+			[
+				"too",
+				"tooltip.html"
+			],
+			[
+				"linec",
+				"scripts/lineChart.js"
+			],
+			[
+				"tooltip",
+				"tooltip.html"
+			],
+			[
+				"contoll",
+				"scripts/controller.js"
+			],
+			[
+				"ds",
+				"scripts/dsold.js"
+			],
+			[
+				"linechart.js",
+				"scripts/lineChart.js"
+			],
+			[
+				"obj",
+				"scripts/objects.js"
+			],
+			[
+				"object",
+				"scripts/objects.js"
+			],
+			[
+				"linechart2",
+				"scripts/lineChart2.js"
+			],
+			[
+				"linechart",
+				"scripts/lineChart2.js"
+			],
+			[
+				"liencha",
+				"scripts/lineChart2.js"
+			],
+			[
+				"obje",
+				"scripts/objects.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"anal",
+				"~/github/valet-analytics/valet.sublime-project"
+			],
+			[
+				"",
+				"~/github/economics-plot/econPlot.sublime-project"
+			],
+			[
+				"val",
+				"~/github/valet-analytics/valet.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 167.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

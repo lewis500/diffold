@@ -1,55 +1,187 @@
 body {
-	/*font: Libre;*/
-	font-family: 'Libre Baskerville', serif;
+  font-family: 'Libre Baskerville', serif;
+  background-color: white;
+  padding-top: 15px;
+  padding-bottom: 35px;
 }
-
-h1,h2,h3,h4,h5{
+h1, h2, h3, h4, h5 {
   font-family: 'PT Sans'
 }
-
+span#left {
+  background-color: rgba(241, 169, 160, .3);
+  padding: 0px 4px 0px 4px;
+  /*background-opacity: .4;*/
+}
 strong {
   font-weight: 700;
 }
-
-text {
-	font-family: 'PT Sans', sans-serif;
-}
-
-.axis path,
-.axis line {
+path.triangle{
+  stroke: black;
   fill: none;
-  stroke: #000;
+  stroke-width: 2px;
+}
+text {
+  font-family: 'Libre Baskerville';
+  font-size: 11px;
+}
+rect.block {
+  fill: #EF4836;
+  /*stroke: #222;*/
+  /*stroke-width: 3;*/
+  
+  opacity: 0.9;
+}
+g.block {
+  fill: #F22613;
+  cursor: pointer;
+}
+.spring {
+  fill: none;
+  stroke-width: 3px;
+  stroke: #888;
+  pointer-events: none;
+  stroke-linecap: round;
+  /*stroke-dasharray: 3,3;*/
+}
+circle.wheel1 {
+  stroke-dasharray: 2, 4;
+  stroke-linecap: round;
+  stroke: #22313F;
+  stroke-width: 2px;
+  fill: #22313F;
+  /*fill-opacity: 0.2;*/
+}
+circle.wheel {
+  stroke-dasharray: 1.5, 4;
+  stroke-linecap: round;
+  stroke: #fff;
+  stroke-width: 2px;
+  fill: none;
+  /*fi*/
+  /*fill: none;*/
+}
+rect.background {
+  fill: #ddd;
+  opacity: 0.9;
+}
+rect.yBar {
+  fill: #F22613;
+  opacity: .7;
+}
+rect.tBar {
+  fill: #2ECC71;
+  opacity: .7;
+}
+rect.dyBar {
+  fill: #22A7F0;
+  opacity: .7;
+}
+line.tLine {
+  stroke: #2ECC71;
+  stroke-dasharray: 2, 4;
+  stroke-linecap: round;
+  stroke-width: 2px;
+}
+line.dyLine {
+  stroke: #22A7F0;
+  stroke-dasharray: 2, 4;
+  stroke-linecap: round;
+  stroke-width: 2px;
+
+}
+line.yLine {
+  stroke: #F22613;
+  stroke-dasharray: 2, 4;
+  stroke-linecap: round;
+  stroke-width: 2px;
+}
+.axis path, .axis line {
+  fill: none;
   shape-rendering: crispEdges;
 }
-
 .dot {
-  /*stroke: #000;*/
-  /*stroke-width: 0;*/
   stroke: #eee;
-  /*stroke-dash*/
   fill: crimson;
+  cursor: pointer;
   opacity: 0.7;
   stroke-width: 1;
 }
-
+.dot2 {
+  fill: #22A7F0;
+  opacity: 0.7;
+  pointer-events: none;
+}
 .crawl {
   fill: none;
   stroke-width: 1px;
-  stroke-dasharray: 2,2, 1;
+  stroke-dasharray: 2, 2, 1;
   stroke: #333;
 }
-
 .slope {
   stroke: blue;
   fill: none;
   stroke-width: 3px;
   opacity: 0.4;
 }
-
-.goal{
+.goal {
   fill: none;
   stroke: blue;
   opacity: 0.5;
-  stroke-dasharray: 2,2;
+  stroke-dasharray: 2, 2;
   stroke-width: 1px;
 }
+line, path {
+  fill: none;
+  pointer-events: none;
+}
+.funPath {
+  stroke: #F22613;
+  stroke-width: 1.5px;
+  fill: none;
+}
+.derPath {
+  stroke: #22A7F0;
+  stroke-width: 1.5px;
+  /*stroke-dasharray: 2,2;*/
+  
+  stroke-linecap: round;
+}
+.goalPath {
+  stroke: #F89406;
+  stroke-width: 1.5px;
+  stroke-dasharray: 2, 2;
+  stroke-linecap: round;
+}
+.diffPath {
+  stroke: #9A12B3;
+  stroke-width: 1.5px;
+}
+path.diffArea {
+  fill: #9A12B3;
+  /*fill: ;*/
+  
+  stroke: none;
+  /*opacity: .2;*/
+  /*stroke-width: 1.5px;*/
+}
+.expFun div {
+  width: 32.6%;
+  /*margin: 5px;*/
+  
+  display: inline-block;
+  /*margin-left: 25px;*/
+}
+.axis line {
+  stroke: white;
+  stroke-dasharray: 3, 1;
+}
+text.label {
+  font-size: 14px;
+  font-weight: 700;
+}
+.noY .y.axis text {
+  opacity: 0;
+}
+/*.invisible{
+  opacity: 0;
+}*/

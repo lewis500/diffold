@@ -1,107 +1,104 @@
-angular.module('mainApp')
-  .controller('funPickerCtrl', function($scope) {
-    var FP = this;
+var ID = (function() {
+  var id = 0;
+  return function() {
+    id++;
+    return id;
+  };
+})();
 
-    FP.data = [{
-      x: 0.01,
-      y: 0.01,
-      i: 0
-    }];
+Object.make = function(a) {
+  var d = Object.create(a);
+  return d;
+}
 
-    FP.der = [];
+function expCtrl($scope) {
+  var E = this;
 
-    var bisect = d3.bisector(function(d) {
-      return d.x
-    }).right;
-
-    var j = 1;
-
-    FP.removeDot = function removeDot(d) {
-      FP.data.splice(FP.data.indexOf(d), 1);
-      $scope.$apply();
-      $scope.$broadcast('addDot');
-    };
-
-    var newDatum;
-
-    FP.addDot = function addDot(res) {
-      newDatum = {
-        x: res[0],
-        y: res[1],
-        i: (j++)
-      };
-      FP.data.push(newDatum);
-      FP.data.sort(function(a, b) {
-        return a.x - b.x;
+  var Dot = {
+    init: function(v) {
+      _.assign(this, {
+        y: v.y,
+        x: v.x,
+        id: ID()
       });
-      update();
-      $scope.$apply();
-      $scope.$broadcast('addDot');
-    };
-
-    FP.dragRec = function(res) {
-      newDatum.x = res[0];
-      newDatum.y = res[1];
-      FP.data.sort(function(a, b) {
-        return a.x - b.x;
+      return this;
+    },
+    change: function(v) {
+      this.x = v.x;
+      this.y = v.y;
+      E.fit.which = _.find(E.fit.array, function(d) {
+        return d.x >= v.x;
       });
-      update();
-      $scope.$apply();
-      $scope.$broadcast('move');
-    };
-
-    FP.drag = function(res) {
-      var i = res[2];
-      FP.data[i].x = res[0];
-      FP.data[i].y = res[1];
-      FP.data.sort(function(a, b) {
-        return a.x - b.x;
-      });
-      update();
-      $scope.$apply();
-      $scope.$broadcast('move');
-    };
-
-    FP.fit = [];
-    FP.derivative = [];
-
-    function update() {
-      var degree = 3;
-      if (FP.data.length < degree ) return;
-      var filler = _.range(FP.data[0].x, FP.data[FP.data.length - 1].x + .5, .125)
-        .map(function(d) {
-          return [d, null]
-        });
-
-      var newData = _.union(FP.data.map(function(d) {
-        return [d.x, d.y];
-      }), filler).sort(function(a, b) {
-        return a[0] - b[0];
-      });
-
-      var r = regression('polynomial', newData, degree);
-      FP.fit = r.points;
-      FP.derivative = filler.map(function(d) {
-        var res = 0;
-        r.equation.forEach(function(v, i) {
-          if (i == 0) return;
-          res = res + (i) * v * Math.pow(d[0], i - 1)
-        })
-        return [d[0], res];
-      });
-
+      dots.getSorted();
+      E.emitMove();
     }
+  };
 
-    FP.goal = _.range(0, 4, 0.125)
-      .map(function(d) {
-        return [d,
-          1 + 1 * d - .5 * Math.pow(d, 2)
-        ];
+  E.goal = _.range(0, 60)
+    .map(function(d) {
+      return {
+        dy: 0.5 * Math.exp(d / 10 * 0.5),
+        x: d / 10,
+        y: Math.exp(d / 10 * 0.5)
+      };
+    });
+
+  E.emitMove = function() {
+    $scope.$emit('move');
+  }
+
+  var hilite = E.hilite = {
+    show: false,
+    toggleOn: function(which) {
+      dots.which = which;
+      fit.which = _.findLast(fit.array, function(d) {
+        return d.x <= which.x;
       });
+      this.show = true;
+      $scope.$emit('toggleOn');
+    },
+    toggleOff: function() {
+      this.show = false;
+      $scope.$emit('toggleOff');
+    }
+  };
 
-  });
+  var dots = E.dots = {
+    array: [],
+    newDatum: null,
+    which: null,
+    addDot: function(v) {
+      this.newDatum = Object.make(Dot).init(v)
+      this.array.push(this.newDatum);
+      this.getSorted();
+      $scope.$emit('addDot');
+      E.hilite.toggleOn(this.newDatum);
+    },
+    removeDot: function(v) {
+      this.array.splice(this.array.indexOf(v), 1);
+      $scope.$emit('addDot');
+      hilite.toggleOff();
+    },
+    getSorted: function() {
+      this.array.sort(function(a, b) {
+        return a.x - b.x;
+      });
+    },
+  };
 
-angular.module('mainApp')
+  var fit = E.fit = {
+    refit: function(v) {
+      this.array = v;
+    },
+    array: [],
+    which: null,
+  };
+
+}
+
+
+
+angular.module('mainApp').controller('expCtrl', expCtrl)
   .controller('funCtrl', function($scope) {
     var fun = this;
     fun.equation = function(d) {
@@ -116,7 +113,7 @@ angular.module('mainApp')
 angular.module('mainApp')
   .controller('slopeCtrl', function($scope) {
     $scope.data = _.range(0, 4, .05).map(function(d) {
-      return [d, 1.5 + .5 * Math.pow(d, 2) - 1 * d,  d - 1];
+      return [d, 1.5 + .5 * Math.pow(d, 2) - 1 * d, d - 1];
     });
 
     $scope.point = [0, 0, 0];

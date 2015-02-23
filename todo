@@ -1,55 +1,50 @@
-CONVERT TO OOP
+FUNCTION PLOT
+create the function plot controller and derivative
 
 
 
 
+CART2
+create a chart showing the velocity over time
+
+
+GENERAL PLAN
+redo the top value picker thing
+make a new block directive that just slows down
+make a chart that accompanies the new block directive
+
+
+CART
+put a matte on the cart
+
+
+LINE CHART
+simplify the styles!
+make it so you get started with three dots filled in
+switch out purple and green
+fix the transitions on the line on the right plot
+buttons to show the answer functions. once the answers are revealed, have areas for the other two lines and the answers, too
+put numbers on right side of right plot, too
+label the lines with moving labels
 
 
 SHORT TERM
 
+mention how they used machines for complicated ones, and include a picture from the Comp History Museum
 
-LONG TERM
 
-do double plots for hte quadratic one, too
 
-have bars go up for when you're dragging things around, to show the link between the two plots
+
+
 
 whenever you reference htings, color them with tspans. use a light shading to distinguish the left and right plots.
 
-use a ggplot style background for the plots.
-
-
-make different options for the picker plot, for each plot, have a button that reveals the answer
-when the answer is revealed, show it as a mathjax equation
-
-
-
-
-
-
-
-
-
-
-use defs to mask out the other parts of the plots
-have the function picker start out with some dots drawn
-make one for f' = f(x)
-put labels to follow lines around
-
-
-FIXER PLOT
-share the data
-stop cutting off the data a few times after your dots. let it ride out.
-get rid of the object/array dichotomy
-when you click on the left plot, have it draw the slope and show that slope on the right plot as a bar
-
-display the functions.
 
 REAL-TIME MATHJAX UPDATING
 
 
-
-make the plot with its slope as a magnitude
-add arrows
+LONG TERM
 make the circles pulse
-add a voronoi for the circle selections
+color code the axes with y', y, etc.
+use the d3 jet pack to do a dy/dx thing
+make the cart kind of tilt a little
