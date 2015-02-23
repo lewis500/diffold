@@ -1,4 +1,4 @@
-function funPlotLeft() {
+function funPlot() {
 
   // =====setup=====
   var margin = {
@@ -165,4 +165,4 @@ function funPlotLeft() {
 
 
 angular.module('mainApp')
-  .directive('funPlotLeft', funPlotLeft)
+  .directive('funPlot', funPlot)

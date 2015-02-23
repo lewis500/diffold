@@ -3,7 +3,7 @@ angular.module('mainApp')
   .directive('cartDer2', cartDer2)
   .directive('cartChart', cartChart);
 
-function cartCtrl2($scope) {
+function cartCtrl2($scope, $timeout) {
   var C = this;
   var block = C.block = {
     b: 1,
@@ -12,16 +12,16 @@ function cartCtrl2($scope) {
     v: 0,
     array: [],
     release: function() {
-      $scope.$broadcast('release');
       block.stop = true;
-      this.v = this.v0;
-      C.block.x = 0;
-      C.block.array = [{
-        v: this.v0,
-        t: 0
-      }];
-      var l = 0;
-      _.defer(function() {
+      $scope.$broadcast('release');
+      $timeout(function() {
+        block.v = block.v0;
+        C.block.x = 0;
+        C.block.array = [{
+          v: block.v0,
+          t: 0
+        }];
+        var l = 0;
         block.stop = false;
         d3.timer(function(t) {
           t = t / 1000;
@@ -36,8 +36,8 @@ function cartCtrl2($scope) {
           if (block.v < 0.0004) block.stop = true;
           l = t;
           return block.stop;
-        });
-      })
+        }, 300);
+      });
     },
     stop: false
   };
@@ -267,22 +267,26 @@ function cartChart() {
     var plot = {
       funPath: main.append('path.funPath'),
       update: function() {
+        if (!this.funPath) return;
         this.funPath
           .datum(C.block.array)
           .attr('d', line);
       },
       remake: function() {
+        // this.funPath.datum([])
         this.funPath.remove();
-        this.funPath = main.append('path.funPath');
+        setTimeout(function() {
+          plot.funPath = main.append('path.funPath');
+        }, 50)
       }
     };
 
-    scope.$on('moveBlock', function() {
-      plot.update();
-    });
-
     scope.$on('release', function() {
       plot.remake();
+    });
+
+    scope.$on('moveBlock', function() {
+      plot.update();
     });
 
     scope.$on('windowResize', widthResize);
