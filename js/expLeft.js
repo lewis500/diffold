@@ -20,8 +20,7 @@ function expFunLeft() {
 
   var line = d3.svg.line()
     .interpolate('cardinal', .5)
-
-  .x(function(d) {
+    .x(function(d) {
       return x(d.x);
     })
     .y(function(d) {
@@ -76,7 +75,6 @@ function expFunLeft() {
         })
         .on('dragend', function(d) {
           E.hilite.toggleOff();
-          // E.emitMove();
         });
 
       return svg.append('rect.background')

@@ -9,35 +9,34 @@ function cartCtrl2($scope, $timeout) {
     b: 1,
     x: 0,
     v0: .8,
+    v01: .8,
     v: 0,
     array: [],
     release: function() {
-      block.stop = true;
-      $scope.$broadcast('release');
+      C.block.stop = true;
+      C.block.v0 = C.block.v = C.block.v01;
+      C.block.x = 0;
+      C.block.array = [];
+      $scope.$broadcast('moveBlock');
       $timeout(function() {
-        block.v = block.v0;
-        C.block.x = 0;
-        C.block.array = [{
-          v: block.v0,
-          t: 0
-        }];
+        C.block.stop = false;
         var l = 0;
-        block.stop = false;
         d3.timer(function(t) {
           t = t / 1000;
-          var q = t - l
-          block.v = block.v0 * Math.exp(-block.b * t);
-          block.x += block.v * q;
-          block.array.push({
-            v: block.v,
+          var delT = t - l
+          C.block.v = C.block.v0 * Math.exp(-C.block.b * t);
+          C.block.x += C.block.v * delT;
+          C.block.array.push({
+            v: C.block.v,
             t: t
           });
-          $scope.$broadcast('moveBlock');
-          if (block.v < 0.0004) block.stop = true;
+          if (C.block.stop) C.block.array = [];
+          if (C.block.v < 0.0004) C.block.stop = true;
           l = t;
-          return block.stop;
-        }, 300);
-      });
+          $scope.$broadcast('moveBlock');
+          return C.block.stop;
+        });
+      }, 25);
     },
     stop: false
   };
@@ -268,22 +267,10 @@ function cartChart() {
       funPath: main.append('path.funPath'),
       update: function() {
         if (!this.funPath) return;
-        this.funPath
-          .datum(C.block.array)
-          .attr('d', line);
-      },
-      remake: function() {
-        // this.funPath.datum([])
-        this.funPath.remove();
-        setTimeout(function() {
-          plot.funPath = main.append('path.funPath');
-        }, 50)
+        this.funPath.attr('d', line(C.block.array));
       }
     };
 
-    scope.$on('release', function() {
-      plot.remake();
-    });
 
     scope.$on('moveBlock', function() {
       plot.update();

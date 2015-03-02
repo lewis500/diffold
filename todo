@@ -1,16 +1,23 @@
-FUNCTION PLOT
-create the function plot controller and derivative
+SHORT TERM
+get rid of the triangle
+git rid of the exponential function plot
+add titles over the plots: function, derivative, y vs y'
+make a still plot of the y vs y'
+add solution buttons
+
+QUAD FUNC
+shrink the quad function
+write the numbers along the bottom on the quad function dotted line
+change the style of the target line
 
 
 
 
-CART2
-create a chart showing the velocity over time
+
 
 
 GENERAL PLAN
 redo the top value picker thing
-make a new block directive that just slows down
 make a chart that accompanies the new block directive
 
 

@@ -40,34 +40,47 @@
 
     </div>
 
-    <p>The phrase "differential equation" is such a menacing pair of science words it almost sounds made up, like "flux capacitor." Indeed, if what Barzun says is true, just looking at them melted someone. But fear not. The goal here isn't to help anyone pass <a href='http://bayen.eecs.berkeley.edu/sites/default/files/PDE/expandedDescription.pdf'>Control of Distribution Parameter Systems</a>; it's just to give a quick introduction to one of the most wonderful tools we have to interpret and redesign the world.</p>
+    <p>The phrase "differential equation" is a menacing pair of science words, like "flux capacitor." If what Barzun says is true, just looking at them melted someone. But fear not. The goal here isn't to help anyone pass <a href='http://bayen.eecs.berkeley.edu/sites/default/files/PDE/expandedDescription.pdf'>Control of Distribution Parameter Systems</a>; it's just to give a quick introduction to one of the most wonderful tools we have to interpret and redesign the world.</p>
 
     <h3>definition</h3>
 
     <p>You're probably used to regular old equations like $ t^2 +t = 2 $. Here, "solving the equation" means finding numbers that make the statement true. Below, change $ t $ until it's true that $ t^2 + t = 2 $.</p>
+  </div>
+  <div class='clearfix'></div>
+  <div quad-fun-der class='col-xs-4'></div>
+  <div class='clearfix'></div>
 
-    <div ng-controller="funCtrl as fun" class='row'>
-      <div fun-plot class='col-xs-8'></div>
-    </div>
-
-    <p>A differential equation is a statement that involves a derivative, and <strong>solving a differential equation means finding a function whose derivative makes the statement true.</strong> The answer is not a number; it's a machine that transforms them.</p>
-
-    <!--     <p>The solution to this equation is $t^2+2t +C$, where $C$ can be any number. To that $C$ is open-ended, drag this slider to shift the dots up and down, noting the derivative stays the same.</p> -->
+  <div class='col-xs-7'>
+    <p>A differential equation is a statement that involves a derivative, and <strong>solving a differential equation means finding a function whose derivative makes the statement true.</strong> The solutions aren't numbers; they're functions.</p>
 
     <h3>one equation to rule them all</h3>
 
-    <p>Suppose you have student loans with an interest rate of $k$. If you don't make any payments, your debt, $y$, will grow according to the diffEQ</p>
+    <p>This is the most important differential equation</p>
 
     $$ y' = k \cdot y. \,\,\, (\mathcal{A}) $$
 
-    <p>This says, "The rate-of-change of $y$ is a multiple of $y$." If you solve it, you'll get a function $y(t)$ telling how much debt you have at time $t$. Below, you'll solve it manually. </p>
-    <p>Click the <span id='left'>left plot</span> to drop points, which draw a function <span id="y">y(t)</span>. The <span id='der'>derivative</span>, $y'$, becomes <span id='yprime'>$y'(t)$</span> on the <span id='middle'>middle plot</span>. The diffEQ $(\mathcal{A})$ appears as a <span id='target'>target</span> on the <span id='right'>right plot</span>, which has $y$ on the horizontal axis and $y'$ on the vertical. See if you can draw $y(t)$ to give the right relationship. To delete a point, right-click it.</p>
+    <p>It says, "The rate-of-change of $y$ is a multiple of $y$." Here is that fact plotted out:</p>
+
+    INSERT CHART
+
+    <p>To solve it, find a function $y(t)$ for which it's true. To do that, 'by hand,' click the <span id='left'>left plot</span> to drop points. They get connected into your answer <span id="y">y(t)</span>. The <span id='der'>derivative</span> of your answer shows up as <span id='yprime'>$y'(t)$</span> on the <span id='middle'>middle plot</span>. The diffEQ appears as a <span id='target'>target</span> on the <span id='right'>right plot</span>. See if you can draw $y(t)$ to satisfy $\mathcal{A}$. To delete a point, right-click it.</p>
 
   </div>
   <div ng-controller="expCtrl as E" class='row col-xs-10 shadow-z-1 expFun' style='padding: 20px;'>
     <div exp-fun-left class='shadow-z-2 '></div>
     <div exp-fun-middle class='shadow-z-2 noY'></div>
     <div exp-fun-right class='shadow-z-2 noY'></div>
+  </div>
+  <br>
+  <div class='col-xs-7'>
+    <p>
+      Click here to see a solution, which is
+    </p>
+    $$ y(t) = \cdot e^{kt},$$
+    <p>
+      where $e$ is Euler's number $2.718$. This function is the only one whose derivative is itself.
+    </p>
+
   </div>
   <br>
   <div class='col-xs-7'>
@@ -87,12 +100,15 @@
 
   <div ng-controller="cartCtrl2 as C">
     <div class='col-xs-5'>
-      <div slider ng-model="C.block.v0" start=0 end=1 step=0.025 class='slider slider-material-blue'></div>
+      <div slider ng-model="C.block.v01" start=0 end=1 step=0.025 class='slider slider-material-blue'></div>
       <div class='button btn btn-raised' ng-click="C.block.release()">release</div>
+
     </div>
     <div class='clearfix'></div>
     <div cart-chart class='col-xs-5'></div>
     <div class='clearfix'></div>
+
+
 
     <cart-der2 class='col-xs-8'></cart-der2>
   </div>
@@ -100,6 +116,9 @@
 
 
   <div cart-der class='col-xs-8'></div>
+  <div class='clearfix'></div>
+
+  <div e-fun-der class='col-xs-5'></div>
 
 
 </body>
@@ -113,8 +132,8 @@ angular.module('mainApp', ['nouislider'])
   });
 </script>
 <script type="text/javascript" src='js/controllers.js'></script>
-<script type="text/javascript" src='js/funPlot.js'></script>
-<script type="text/javascript" src='js/derPlot.js'></script>
+<script type="text/javascript" src='js/e.js'></script>
+<script type="text/javascript" src='js/quadFun.js'></script>
 <script type="text/javascript" src='js/cartDer.js'></script>
 <script type="text/javascript" src='js/cartDer2.js'></script>
 <script type="text/javascript" src='js/expLeft.js'></script>
