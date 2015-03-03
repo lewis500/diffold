@@ -12,8 +12,9 @@
     "slide"
   ],
   "main": [
-    "jquery.nouislider.min.js",
-    "jquery.nouislider.css"
+    "distribute/jquery.nouislider.all.min.js",
+    "distribute/jquery.nouislider.min.css",
+    "distribute/jquery.nouislider.pips.min.css"
   ],
   "dependencies": {
     "jquery": ">= 1.7.0"
@@ -25,16 +26,17 @@
   "license": "http://www.wtfpl.net/about/",
   "homepage": "http://refreshless.com/nouislider/",
   "author": {
-    "name": "Léon Gersen"
+    "name": "Leon Gersen"
   },
-  "version": "6.2.0",
-  "_release": "6.2.0",
+  "version": "7.0.10",
+  "_release": "7.0.10",
   "_resolution": {
     "type": "version",
-    "tag": "6.2.0",
-    "commit": "cdeac7aa4dd80b310620856ab05e46280764a126"
+    "tag": "7.0.10",
+    "commit": "7f50c48758cf06ec3bd4a3e134ac1ad914ede531"
   },
   "_source": "git://github.com/leongersen/noUiSlider.git",
-  "_target": "~6.2.0",
-  "_originalSource": "nouislider"
+  "_target": "~7.0.10",
+  "_originalSource": "nouislider",
+  "_direct": true
 }

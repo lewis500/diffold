@@ -7,10 +7,22 @@ body {
 h1, h2, h3, h4, h5 {
   font-family: 'PT Sans'
 }
-span#left {
-  background-color: rgba(241, 169, 160, .3);
-  padding: 0px 4px 0px 4px;
-  /*background-opacity: .4;*/
+span.hi{
+  padding: 2px 4px 2px 4px;
+  border-radius: 3px;
+  /*color: white;*/
+}
+span.hi.y {
+  background-color: rgba(241, 169, 160, .6);
+}
+span.hi.F {
+  background-color: rgba(241, 169, 160, .6);
+}
+span.hi.yprime { 
+  background-color: rgba(34, 167, 240, .4);
+}
+span.hi.tar { 
+  background-color: rgba(247, 202, 24, .6);
 }
 strong {
   font-weight: 700;
@@ -137,19 +149,19 @@ line.yLine {
   stroke-dasharray: 2, 2, 1;
   stroke: #333;
 }
-.slope {
+/*.slope {
   stroke: blue;
   fill: none;
   stroke-width: 3px;
   opacity: 0.4;
-}
-.goal {
+}*/
+/*.goal {
   fill: none;
   stroke: blue;
   opacity: 0.5;
   stroke-dasharray: 2, 2;
   stroke-width: 1px;
-}
+}*/
 line, path {
   fill: none;
   pointer-events: none;
@@ -198,6 +210,10 @@ path.diffArea {
   display: inline-block;
   /*margin-left: 25px;*/
 }
+/*.go div{
+  display: inline-block;
+}*/
+
 .axis line {
   stroke: white;
   stroke-dasharray: 3, 1;
@@ -206,9 +222,20 @@ text.label {
   font-size: 14px;
   font-weight: 700;
 }
+text.tValue{
+  text-anchor: left;
+  dx: 1em;
+  dy: -.25em;
+}
+
 .noY .y.axis text {
   opacity: 0;
 }
+
+circle.selector{
+  opacity: 0.4;
+}
+
 /*.invisible{
   opacity: 0;
 }*/

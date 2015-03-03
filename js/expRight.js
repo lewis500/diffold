@@ -10,7 +10,7 @@ function expFunRight() {
     left: 10
   };
 
-  var x = d3.scale.linear()
+  var t = d3.scale.linear()
     .domain([0, 8])
 
   var y = d3.scale.linear()
@@ -22,7 +22,7 @@ function expFunRight() {
   var line = d3.svg.line()
     .interpolate('cardinal')
     .x(function(d) {
-      return x(d.y);
+      return t(d.y);
     })
     .y(function(d) {
       return y(d.dy);
@@ -31,7 +31,7 @@ function expFunRight() {
   var area = d3.svg.area()
     .interpolate('cardinal')
     .x(function(d) {
-      return x(d.y);
+      return t(d.y);
     })
     .y1(function(d) {
       return y(Math.max(d.dy, 0.5 * d.y))
@@ -45,14 +45,12 @@ function expFunRight() {
     var height = el[0].clientWidth - M.top - M.bottom;
     var width = el[0].clientWidth - M.left - M.right;
 
-    var svg = d3.select(el[0]).append("svg.exp")
+    var s = d3.select(el[0]).append("svg.exp")
       .attr("width", '100%')
-      .attr("height", height + M.top + M.bottom)
-      .append("g")
-      .attr("transform", "translate(" + M.left + "," + M.top + ")");
+      .attr("height", height + M.top + M.bottom);
 
-    var s = d3.select(el[0]).select('.exp');
-
+    var svg = s.append("g")
+      .translate([M.left, M.top]);
 
     var bg = svg.append('rect.background')
       .attr({
@@ -61,10 +59,10 @@ function expFunRight() {
         ry: 4,
       });
 
-    var xAxis = {
-      g: svg.append("g.x.axis").translate([0, height]),
+    var tAxis = {
+      g: svg.append("g.t.axis").translate([0, height]),
       fun: d3.svg.axis()
-        .scale(x)
+        .scale(t)
         .ticks(5)
         .tickSize(-height)
         .orient("bottom"),
@@ -102,15 +100,18 @@ function expFunRight() {
       goalPath: main.append('path.goalPath'),
       diffPath: main.append('path.diffPath'),
       diffArea: main.append('path.diffArea'),
+      tran: function(tar) {
+        return tar.transition('asdf').duration(25).ease('cubic-out');
+      },
       update: function() {
         this.goalPath.attr('d', line(E.goal));
-        this.diffArea
-          .transition()
-          .duration(125)
-          .ease('cubic-out')
-          .attr('d', area(E.fit.array));
-        this.diffPath.transition().duration(100).ease('cubic-out').attr('d', line(E.fit.array));
-      }
+        this.tran(this.diffArea).attr('d', area(E.fit.array));
+        this.tran(this.diffPath).attr('d', line(E.fit.array));
+        var last = E.fit.array[E.fit.array.length - 1];
+        if(!last) return;
+        this.label.translate([Math.min(t(last.y), width-30), Math.max(y(last.dy), 15) ]);
+      },
+      label: main.append('g').append('text').text('F(y)').attr('x',10)
     };
 
     var bars = {
@@ -119,7 +120,7 @@ function expFunRight() {
       yLine: main.append('line.yLine'),
       dyLine: main.append('line.dyLine'),
       drop: function(tar) {
-        return tar.transition().duration(120).ease('cubic-in');
+        return tar.transition('drop').duration(25).ease('cubic-in');
       },
       appear: function(tar, o) {
         return tar.transition('appear').duration(50).attr('opacity', o);
@@ -127,7 +128,7 @@ function expFunRight() {
       show: function() {
         this.appear(this.yLine, .7);
         this.appear(this.dyLine, .7);
-        plot.diffArea.transition().duration(50).attr('opacity',.2);
+        this.appear(plot.diffArea, .2);
       },
       hide: function() {
         this.drop(this.dyBar).attr({
@@ -139,11 +140,10 @@ function expFunRight() {
         });
         this.appear(this.yLine, 0);
         this.appear(this.dyLine, 0);
-        plot.diffArea.transition().duration(50).attr('opacity',0);
-
+        this.appear(plot.diffArea, 0);
       },
       shift: function(tar) {
-        return tar.transition().duration(25).ease('cubic');
+        return tar.transition('shift').duration(25).ease('cubic');
       },
       update: function() {
         var which = E.fit.which;
@@ -154,19 +154,19 @@ function expFunRight() {
             height: height - y2(which.dy),
           });
         this.shift(this.yBar).attr({
-          width: x(which.y)
+          width: t(which.y)
         });
         this.shift(this.dyLine).attr({
           y1: height,
           y2: y2(which.dy),
-          x1: x(which.y),
-          x2: x(which.y)
+          x1: t(which.y),
+          x2: t(which.y)
         });
         this.shift(this.yLine).attr({
           y1: y2(which.dy),
           y2: y2(which.dy),
           x1: 0,
-          x2: x(which.y)
+          x2: t(which.y)
         });
       }
     };
@@ -187,6 +187,7 @@ function expFunRight() {
 
     scope.$on('toggleOn', function() {
       bars.update();
+      // plot.update();
       bars.show();
     });
 
@@ -200,9 +201,9 @@ function expFunRight() {
       s.attr('height', height + M.top + M.bottom);
       y.range([height, 0]);
       y2.range([height, 0]);
-      x.range([0, width]);
+      t.range([0, width]);
       bg.attr("width", width).attr('height', height)
-      xAxis.update();
+      tAxis.update();
       yAxis.update();
       plot.update();
       bars.update();

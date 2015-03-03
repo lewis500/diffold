@@ -9,14 +9,14 @@ function expFunMiddle() {
     left: 10
   };
 
-  var x = d3.scale.linear().domain([0, 8]).clamp(true);
+  var t = d3.scale.linear().domain([0, 8]).clamp(true);
   var y = d3.scale.linear().domain([0, 8]);
   var y2 = d3.scale.linear().domain([0, 8]).clamp(true);
 
   var line = d3.svg.line()
-    .interpolate('monotone')
+    .interpolate('cardinal')
     .x(function(d) {
-      return x(d.x);
+      return t(d.t);
     })
     .y(function(d) {
       return y(d.dy);
@@ -27,13 +27,12 @@ function expFunMiddle() {
     var height = el[0].clientWidth - M.top - M.bottom;
     var width = el[0].clientWidth - M.left - M.right;
 
-    var svg = d3.select(el[0]).append("svg.exp")
+    var s = d3.select(el[0]).append("svg.exp")
       .attr("width", '100%')
       .attr("height", height + M.top + M.bottom)
-      .append("g")
-      .translate([M.left, M.top]);
 
-    var s = d3.select(el[0]).select('.exp');
+    var svg = s.append("g")
+      .translate([M.left, M.top]);
 
     var clipPath = svg.append('defs').append('clipPath#clip')
       .append('rect')
@@ -49,10 +48,10 @@ function expFunMiddle() {
         ry: 4,
       });
 
-    var xAxis = {
-      g: svg.append("g.x.axis").translate([0, height]),
+    var tAxis = {
+      g: svg.append("g.t.axis").translate([0, height]),
       fun: d3.svg.axis()
-        .scale(x)
+        .scale(t)
         .ticks(5)
         .tickSize(-height)
         .orient("bottom"),
@@ -90,8 +89,12 @@ function expFunMiddle() {
     var plot = {
       derPath: main.append('path.derPath'),
       update: function() {
-        this.derPath.transition().duration(75).ease('cubic-out').attr('d', line(E.fit.array));
-      }
+        this.derPath.transition('redraw').duration(75).ease('cubic-out').attr('d', line(E.fit.array));
+        var last = E.fit.array[E.fit.array.length - 1];
+        if(!last) return;
+        this.label.translate([t(last.t), y(last.dy)]);
+      },
+      label: main.append('g').append('text').text("y'(t)").attr('x', 10)
     };
 
     var bars = {
@@ -100,7 +103,7 @@ function expFunMiddle() {
       tLine: main.append('line.tLine'),
       dyLine: main.append('line.dyLine'),
       drop: function(tar) {
-        return tar.transition().duration(120).ease('cubic-in');
+        return tar.transition('drop').duration(120).ease('cubic-in');
       },
       appear: function(tar, o) {
         return tar.transition('appear').duration(50).attr('opacity', o);
@@ -121,30 +124,30 @@ function expFunMiddle() {
         this.appear(this.dyLine, 0);
       },
       shift: function(tar) {
-        return tar.transition().duration(25).ease('cubic');
+        return tar.transition('shift').duration(25).ease('cubic-out');
       },
       update: function() {
         var which = E.fit.which;
-        if (!which) return;
+        // if (!which) return;
         this.shift(this.dyBar)
           .attr({
             y: y2(which.dy),
             height: height - y2(which.dy),
           });
         this.shift(this.tBar).attr({
-          width: x(which.x)
+          width: t(which.t)
         });
         this.shift(this.dyLine).attr({
           y1: height,
           y2: y2(which.dy),
-          x1: x(which.x),
-          x2: x(which.x)
+          x1: t(which.t),
+          x2: t(which.t)
         });
         this.shift(this.tLine).attr({
           y1: y2(which.dy),
           y2: y2(which.dy),
           x1: 0,
-          x2: x(which.x)
+          x2: t(which.t)
         });
       }
     };
@@ -178,16 +181,12 @@ function expFunMiddle() {
       s.attr('height', height + M.top + M.bottom);
       y.range([height, 0]);
       y2.range([height, 0]);
-      x.range([0, width]);
+      t.range([0, width]);
       bg.attr("width", width).attr('height', height)
-      xAxis.update();
+      tAxis.update();
       yAxis.update();
       plot.update();
       bars.update();
-    }
-
-    function transform(d) {
-      return 'translate(' + [x(d.x), y(d.dy)] + ')'
     }
 
   }

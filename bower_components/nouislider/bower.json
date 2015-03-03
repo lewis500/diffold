@@ -12,8 +12,9 @@
 		"slide"
 	],
 	"main": [
-		"jquery.nouislider.min.js",
-		"jquery.nouislider.css"
+		"distribute/jquery.nouislider.all.min.js",
+		"distribute/jquery.nouislider.min.css",
+		"distribute/jquery.nouislider.pips.min.css"
 	],
 	"dependencies": {
 		"jquery": ">= 1.7.0"
@@ -25,6 +26,6 @@
 	"license": "http://www.wtfpl.net/about/",
 	"homepage": "http://refreshless.com/nouislider/",
 	"author": {
-		"name": "Léon Gersen"
+		"name": "Leon Gersen"
 	}
 }

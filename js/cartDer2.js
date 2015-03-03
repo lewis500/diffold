@@ -47,17 +47,17 @@ function cartDer2() {
 
   var M = {
     top: 20,
-    right: 20,
+    right: 35,
     bottom: 25,
-    left: 20
+    left: 10
   };
 
   function link(scope, el, attr) {
     var C = scope.C;
-    var height = 120;
+    var height = 225;
     var width = el[0].clientWidth - M.left - M.right;
     var x = d3.scale.linear()
-      .domain([0, 1])
+      .domain([-.1, 1])
       .range([0, width])
       .clamp(true)
 
@@ -67,6 +67,14 @@ function cartDer2() {
 
     var svg = s.append("g")
       .translate([M.left, M.top]);
+
+    var clipPath = svg.append("svg:clipPath")
+      .attr('id', 'clipPathG')
+      .append('rect')
+      .attr({
+        width: width,
+        height: height
+      });
 
     var bg = svg.append('rect.background')
       .attr({
@@ -94,7 +102,7 @@ function cartDer2() {
       }
     };
 
-    var main = svg.append('g.main');
+    var main = svg.append('g.main').attr('clip-path', 'url(#clipPathG)');
 
     var line = d3.svg.line()
       .x(function(d) {
@@ -106,7 +114,7 @@ function cartDer2() {
     var block = (function() {
 
       var g = main.append('g.block')
-        .translate([0, height / 2 + 10])
+        .translate([0, height - 50])
         .datum(C.block)
         .append('g')
         .translate([x(0), 0]);
@@ -121,7 +129,7 @@ function cartDer2() {
             rx: 4,
             ry: 4
           }),
-        triangle: g.append('path.triangle'),
+        // triangle: g.append('path.triangle'),
         wheels: (function() {
           var w = g.append('g.wheel')
             .translate([0, 30])
@@ -139,18 +147,18 @@ function cartDer2() {
         })(),
         move: function() {
           this.g.translate([x(C.block.x), 0]);
-          this.triangle.datum([{
-            x: -x(C.block.v) / 2,
-            y: -height / 2
-          }, {
-            x: 0,
-            y: 0
-          }, {
-            x: x(C.block.v) / 2,
-            y: -height / 2,
-          }, ]).attr('d', function(d) {
-            return line(d) + "Z";
-          });
+          // this.triangle.datum([{
+          //   x: -x(C.block.v) / 2,
+          //   y: -height / 2
+          // }, {
+          //   x: 0,
+          //   y: 0
+          // }, {
+          //   x: x(C.block.v) / 2,
+          //   y: -height / 2,
+          // }, ]).attr('d', function(d) {
+          //   return line(d) + "Z";
+          // });
           this.wheels.attr('transform', 'rotate(' + x(C.block.x) / (30 * Math.PI) * 360 + ')');
         }
       };
@@ -166,6 +174,7 @@ function cartDer2() {
       s.attr('width', el[0].clientWidth);
       x.range([0, width]);
       bg.attr("width", width);
+      clipPath.attr('width', width);
       xAxis.update();
       block.move();
     }
@@ -175,7 +184,7 @@ function cartDer2() {
   }
 
   return {
-    restrict: 'E',
+    restrict: 'A',
     link: link,
   };
 
@@ -186,7 +195,7 @@ function cartChart() {
   var M = {
     top: 20,
     right: 10,
-    bottom: 20,
+    bottom: 25,
     left: 20
   };
 
@@ -234,13 +243,12 @@ function cartChart() {
         .orient("bottom"),
       label: svg.append('g')
         .append("text.label")
-        .style("text-anchor", "right")
         .text("t"),
       update: function() {
         this.fun.tickSize(-height);
         this.g.translate([0, height]);
         this.g.call(this.fun);
-        this.label.translate([width - 8, height - 5])
+        this.label.translate([width - 30, height - 5])
       }
     };
 
@@ -254,7 +262,7 @@ function cartChart() {
         .translate([5, 14])
         .append("text.label")
         .style("text-anchor", "left")
-        .text("y"),
+        .text("v"),
       update: function() {
         this.fun.tickSize(-width);
         this.g.call(this.fun);

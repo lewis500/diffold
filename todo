@@ -1,57 +1,32 @@
 SHORT TERM
-get rid of the triangle
-git rid of the exponential function plot
-add titles over the plots: function, derivative, y vs y'
-make a still plot of the y vs y'
-add solution buttons
+fix whatever is throwing those errors
+labels
+place labels better
+slider for cart
 
-QUAD FUNC
-shrink the quad function
-write the numbers along the bottom on the quad function dotted line
-change the style of the target line
-
-
-
-
-
-
-
-GENERAL PLAN
-redo the top value picker thing
-make a chart that accompanies the new block directive
-
-
-CART
-put a matte on the cart
-
-
-LINE CHART
-simplify the styles!
-make it so you get started with three dots filled in
-switch out purple and green
-fix the transitions on the line on the right plot
-buttons to show the answer functions. once the answers are revealed, have areas for the other two lines and the answers, too
-put numbers on right side of right plot, too
-label the lines with moving labels
 
 
 SHORT TERM
+write text about initial conditions for cart plot
+make labels float in the middle of the functions, halfway
 
-mention how they used machines for complicated ones, and include a picture from the Comp History Museum
+have a dot that floats on the cart chart, on the left, to show the initial condition
 
+SLIDER
+get rid ofthe material design on the slider;
+have toggle off when the dots are cleared;
+do the slide process so that all dots are just moved up and down. no need to clear things;
+make a button to clear all dots;
+ 
+LINE CHART
+put numbers on right side of right plot, too
 
-
-
-
-
-whenever you reference htings, color them with tspans. use a light shading to distinguish the left and right plots.
-
-
-REAL-TIME MATHJAX UPDATING
 
 
 LONG TERM
+get a better font for y'
+show the derivative magnitude by the size of a tangent line again
+whenever you reference htings, color them with tspans. use a light shading to distinguish the left and right plots.
 make the circles pulse
-color code the axes with y', y, etc.
-use the d3 jet pack to do a dy/dx thing
-make the cart kind of tilt a little
+place even single plots inside of another z-shadow thing, to be consistent
+make a video on how to use it

@@ -10,27 +10,26 @@ function expFunLeft() {
     left: 20
   };
 
-  var x = d3.scale.linear()
+  var t = d3.scale.linear()
     .domain([0, 8])
     .clamp(true);
 
   var y = d3.scale.linear()
-    .domain([0, 8])
-    .clamp(true);
+    .domain([0, 8]);
 
   var line = d3.svg.line()
-    .interpolate('cardinal', .5)
+    .interpolate('monotone')
     .x(function(d) {
-      return x(d.x);
+      return t(d.t);
     })
     .y(function(d) {
       return y(d.dy);
     });
 
   var line2 = d3.svg.line()
-    .interpolate('cardinal', .4)
+    .interpolate('cardinal', .2)
     .x(function(d) {
-      return x(d.x);
+      return t(d.t);
     })
     .y(function(d) {
       return y(d.y);
@@ -49,8 +48,9 @@ function expFunLeft() {
 
     var s = d3.select(el[0]).select('.exp');
 
-    var clipPath = svg.append('defs').append('clip-path')
-      .append('rect#clipPath')
+    var clipPath = svg.append('defs').append('svg:clipPath')
+      .attr('id', 'clipPathLeft')
+      .append('rect')
       .attr({
         width: width,
         height: height
@@ -62,13 +62,13 @@ function expFunLeft() {
           if (d3.event.defaultPrevented) return;
           var loc = d3.mouse(this);
           E.dots.addDot({
-            x: x.invert(loc[0]),
+            t: t.invert(loc[0]),
             y: y.invert(loc[1])
           });
         })
         .on('drag', function() {
           E.dots.newDatum.change({
-            x: x.invert(d3.event.x),
+            t: t.invert(d3.event.x),
             y: y.invert(d3.event.y)
           });
           E.fit.refit(sample(line2(E.dots.array)));
@@ -80,7 +80,7 @@ function expFunLeft() {
       return svg.append('rect.background')
         .attr({
           height: height,
-          rx: 4,
+          rt: 4,
           ry: 4,
         })
         .on("contextmenu", function(d, i) {
@@ -90,10 +90,10 @@ function expFunLeft() {
 
     })();
 
-    var xAxis = {
-      g: svg.append("g.x.axis").translate([0, height]),
+    var tAxis = {
+      g: svg.append("g.t.axis").translate([0, height]),
       fun: d3.svg.axis()
-        .scale(x)
+        .scale(t)
         .ticks(5)
         .tickSize(-height)
         .orient("bottom"),
@@ -126,7 +126,7 @@ function expFunLeft() {
       }
     };
 
-    var main = svg.append('g.main').attr('clip-path', 'url(#clipPath)')
+    var main = svg.append('g.main').attr('clip-path', 'url(#clipPathLeft)')
 
     var dots = {
       circles: null,
@@ -139,10 +139,9 @@ function expFunLeft() {
         .on('drag', function(d, i) {
           if (d3.event.sourceEvent.which == 3) return;
           d.change({
-            x: x.invert(d3.event.x),
+            t: t.invert(d3.event.x),
             y: y.invert(d3.event.y)
           });
-          E.fit.refit(sample(line2(E.dots.array)));
         })
         .on('dragend', function(d) {
           E.hilite.toggleOff();
@@ -205,7 +204,11 @@ function expFunLeft() {
       funPath: main.append('path.funPath'),
       update: function() {
         this.funPath.datum(E.dots.array).attr('d', line2);
-      }
+        var last = E.dots.array[E.dots.array.length - 1];
+        if (!last) return;
+        this.label.translate([t(last.t), y(last.y)])
+      },
+      label: main.append('g').append('text').text('y(t)').attr('x', 10)
     };
 
     var bars = {
@@ -245,19 +248,19 @@ function expFunLeft() {
             height: height - y(which.y),
           });
         this.shift(this.tBar).attr({
-          width: x(which.x)
+          width: t(which.t)
         });
         this.shift(this.yLine).attr({
           y1: height,
           y2: y(which.y),
-          x1: x(which.x),
-          x2: x(which.x)
+          x1: t(which.t),
+          x2: t(which.t)
         });
         this.shift(this.tLine).attr({
           y1: y(which.y),
           y2: y(which.y),
           x1: 0,
-          x2: x(which.x)
+          x2: t(which.t)
         });
       }
     };
@@ -266,6 +269,7 @@ function expFunLeft() {
       dots.update();
       plot.update();
       bars.update();
+      E.fit.refit(sample(line2(E.dots.array)));
     });
 
     scope.$on('toggleOff', function() {
@@ -289,7 +293,7 @@ function expFunLeft() {
     widthResize();
 
     function transform(d) {
-      return 'translate(' + [x(d.x), y(d.y)] + ')'
+      return 'translate(' + [t(d.t), y(d.y)] + ')'
     }
 
     function widthResize() {
@@ -297,41 +301,41 @@ function expFunLeft() {
       height = el[0].clientWidth - M.top - M.bottom;
       s.attr('height', height + M.top + M.bottom);
       y.range([height, 0]);
-      x.range([0, width]);
+      t.range([0, width]);
       bg.attr("width", width).attr('height', height);
       bars.tBar.translate([0, height]);
-      xAxis.update();
+      tAxis.update();
       yAxis.update();
       dots.update();
       plot.update();
     }
 
     function sample(d) {
-      var precision = 5;
+      var precision = 8;
       var path = document.createElementNS(d3.ns.prefix.svg, "path");
       path.setAttribute("d", d);
 
       var n = path.getTotalLength(),
-        t = [0],
+        j = [0],
         i = 0,
         dt = precision;
-      while ((i += dt) < n) t.push(i);
-      t.push(n);
+      while ((i += dt) < n) j.push(i);
+      j.push(n);
 
-      var x0 = .1,
+      var t0 = .1,
         y0 = 0;
-      var delX = x.invert(t[1]);
-      return t.map(function(t, i, k) {
-        var p = path.getPointAtLength(t),
-          x1 = x.invert(p.x),
+      var delT = t.invert(j[1]);
+      return j.map(function(j, i, k) {
+        var p = path.getPointAtLength(j),
+          t1 = t.invert(p.x),
           y1 = y.invert(p.y),
           a = {
-            x: x1,
-            dy: (y1 - y0) / Math.max(x1 - x0, .0001),
+            t: t1,
+            dy: (y1 - y0) / Math.max(t1 - t0, .0001),
             y: y1
           };
         y0 = y1;
-        x0 = x1;
+        t0 = t1;
         return a;
       }).slice(1);
     }
