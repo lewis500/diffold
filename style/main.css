@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5 {
   font-family: 'PT Sans'
 }
 span.hi{
-  padding: 2px 4px 2px 4px;
+  padding: 2px 3px 2px 3px;
   border-radius: 3px;
   /*color: white;*/
 }
@@ -16,7 +16,8 @@ span.hi.y {
   background-color: rgba(241, 169, 160, .6);
 }
 span.hi.F {
-  background-color: rgba(241, 169, 160, .6);
+  padding-left: 1px;
+  background-color: rgba(154, 18, 179, .35);
 }
 span.hi.yprime { 
   background-color: rgba(34, 167, 240, .4);
