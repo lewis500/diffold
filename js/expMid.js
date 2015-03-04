@@ -34,7 +34,8 @@ function expFunMiddle() {
     var svg = s.append("g")
       .translate([M.left, M.top]);
 
-    var clipPath = svg.append('defs').append('clipPath#clip')
+    var clipPath = svg.append('defs').append('clipPath')
+      .attr('id','clipDy')
       .append('rect')
       .attr({
         width: width,
@@ -84,7 +85,7 @@ function expFunMiddle() {
       }
     };
 
-    var main = svg.append('g.main').attr('clip-path', 'url(#clip)')
+    var main = svg.append('g.main').attr('clip-path', 'url(#clipDy)')
 
     var plot = {
       derPath: main.append('path.derPath'),
@@ -99,7 +100,7 @@ function expFunMiddle() {
 
     var bars = {
       dyBar: main.append('rect.dyBar').attr('width', 2).translate([2, 0]),
-      tBar: main.append('rect.tBar').attr('height', 2).attr('y', -3).translate([0, height]),
+      tBar: main.append('rect.tBar').attr('height', 2).attr('y', -3),
       tLine: main.append('line.tLine'),
       dyLine: main.append('line.dyLine'),
       drop: function(tar) {
@@ -128,7 +129,7 @@ function expFunMiddle() {
       },
       update: function() {
         var which = E.fit.which;
-        // if (!which) return;
+        if (!which) return;
         this.shift(this.dyBar)
           .attr({
             y: y2(which.dy),
@@ -136,7 +137,8 @@ function expFunMiddle() {
           });
         this.shift(this.tBar).attr({
           width: t(which.t)
-        });
+        }).translate([0, height]);
+
         this.shift(this.dyLine).attr({
           y1: height,
           y2: y2(which.dy),
@@ -155,6 +157,10 @@ function expFunMiddle() {
     scope.$on('move', function() {
       plot.update();
       bars.update();
+    });
+
+    scope.$on('slide', function() {
+      plot.update();
     });
 
     scope.$on('addDot', function() {
@@ -182,7 +188,9 @@ function expFunMiddle() {
       y.range([height, 0]);
       y2.range([height, 0]);
       t.range([0, width]);
-      bg.attr("width", width).attr('height', height)
+      bg.attr("width", width).attr('height', height);
+        clipPath.attr("width", width).attr('height', height);
+
       tAxis.update();
       yAxis.update();
       plot.update();

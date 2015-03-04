@@ -5,9 +5,9 @@ function dyDer() {
   // =====setup=====
   var M = {
     top: 20,
-    right: 10,
+    right: 25,
     bottom: 20,
-    left: 10
+    left: 20
   };
 
   var x = d3.scale.linear()
@@ -45,13 +45,21 @@ function dyDer() {
     var height = el[0].clientWidth - M.top - M.bottom;
     var width = el[0].clientWidth - M.left - M.right;
 
-    var svg = d3.select(el[0]).append("svg.dy")
-      .attr("width", '100%')
-      .attr("height", height + M.top + M.bottom)
-      .append("g")
+    var s = d3.select(el[0]).append("svg.dy")
+      .attr("width", width + M.left + M.right)
+      .attr("height", height + M.top + M.bottom);
+
+    var svg = s.append("g")
       .attr("transform", "translate(" + M.left + "," + M.top + ")");
 
-    var s = d3.select(el[0]).select('.dy');
+    var clipPath = svg.append('defs')
+      .append('svg:clipPath')
+      .attr('id', 'clip')
+      .append('rect')
+      .attr({
+        width: width,
+        height: height
+      });
 
     var bg = svg.append('rect.background')
       .attr({
@@ -75,7 +83,7 @@ function dyDer() {
         this.fun.tickSize(-height);
         this.g.translate([0, height]);
         this.g.call(this.fun);
-        this.label.translate([width - 8, height - 5]);
+        this.label.translate([width - 12, height - 5]);
       }
     };
 
@@ -101,7 +109,6 @@ function dyDer() {
       goalPath: main.append('path.goalPath'),
       update: function() {
         this.goalPath.attr('d', line(E.goal));
-        // this.
       }
     };
 
@@ -113,10 +120,12 @@ function dyDer() {
       width = el[0].clientWidth - M.left - M.right;
       height = el[0].clientWidth - M.top - M.bottom;
       s.attr('height', height + M.top + M.bottom);
+      s.attr("width", width + M.left + M.right)
       y.range([height, 0]);
       y2.range([height, 0]);
       x.range([0, width]);
-      bg.attr("width", width).attr('height', height)
+      bg.attr("width", width).attr('height', height);
+      clipPath.attr("width", width).attr('height', height);
       xAxis.update();
       yAxis.update();
       plot.update();

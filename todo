@@ -1,6 +1,9 @@
 SHORT TERM
-fix whatever is throwing those errors
-labels
+clear dots button
+make a plot class to add margins before and after
+titles on charts
+
+
 place labels better
 slider for cart
 
@@ -13,7 +16,6 @@ make labels float in the middle of the functions, halfway
 have a dot that floats on the cart chart, on the left, to show the initial condition
 
 SLIDER
-get rid ofthe material design on the slider;
 have toggle off when the dots are cleared;
 do the slide process so that all dots are just moved up and down. no need to clear things;
 make a button to clear all dots;

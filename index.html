@@ -65,8 +65,9 @@
     <p>It says, "The rate-of-change of $y$ is a multiple of $y$." Here is that fact plotted out for $k=.5$.</p>
   </div>
   <div class='clearfix'></div>
-  <div ng-controller="expCtrl as E" class='shadow-z-1 col-xs-3'>
-    <div dy-der></div>
+  <div ng-controller="expCtrl as E" class='shadow-z-1 col-xs-4' style='padding: 20px;'>
+    <p class='jaxTitle' >$$y' = 0.5 \cdot y$$</p>
+    <div dy-der class='shadow-z-2' style='padding: 5px;'></div>
   </div>
   <div class='clearfix'></div>
 
@@ -83,7 +84,7 @@
     </div>
     <div class='col-xs-7'>
     <p>
-      One solution to the equation is $$y(t) = e^{0.5t}.$$ To see that, click <a ng-click="E.dots.clearDots()">here</a>.
+      One solution to the equation is $$y(t) = e^{0.5t}.$$ To see that, click <a ng-click="E.dots.giveAnswer()">here</a>.
     </p>
       <p>
         A solution is any function like $$ y(t) = c \cdot e^{0.5 t},$$ where $e$ is Euler's number $2.718$ and $c$ can be <em>any</em> number. To see that any $c$ will work, click here to draw $c\cdot e^{kt}$ and drag the slider below to move $c$.

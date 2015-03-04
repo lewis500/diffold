@@ -99,24 +99,24 @@ function expFunRight() {
     var plot = {
       goalPath: main.append('path.goalPath'),
       diffPath: main.append('path.diffPath'),
-      diffArea: main.append('path.diffArea'),
+      // diffArea: main.append('path.diffArea'),
       tran: function(tar) {
         return tar.transition('asdf').duration(25).ease('cubic-out');
       },
       update: function() {
         this.goalPath.attr('d', line(E.goal));
-        this.tran(this.diffArea).attr('d', area(E.fit.array));
+        // this.tran(this.diffArea).attr('d', area(E.fit.array));
         this.tran(this.diffPath).attr('d', line(E.fit.array));
         var last = E.fit.array[E.fit.array.length - 1];
-        if(!last) return;
-        this.label.translate([Math.min(t(last.y), width-30), Math.max(y(last.dy), 15) ]);
+        if (!last) return;
+        this.label.translate([Math.min(t(last.y), width - 30), Math.max(y(last.dy), 15)]);
       },
-      label: main.append('g').append('text').text('F(y)').attr('x',10)
+      label: main.append('g').append('text').text('F(y)').attr('x', 10)
     };
 
     var bars = {
       dyBar: main.append('rect.dyBar').attr('width', 2).translate([2, 0]),
-      yBar: main.append('rect.yBar').attr('height', 2).attr('y', -3).translate([0, height]),
+      yBar: main.append('rect.yBar').attr('height', 2).attr('y', -3),
       yLine: main.append('line.yLine'),
       dyLine: main.append('line.dyLine'),
       drop: function(tar) {
@@ -128,7 +128,6 @@ function expFunRight() {
       show: function() {
         this.appear(this.yLine, .7);
         this.appear(this.dyLine, .7);
-        this.appear(plot.diffArea, .2);
       },
       hide: function() {
         this.drop(this.dyBar).attr({
@@ -140,7 +139,6 @@ function expFunRight() {
         });
         this.appear(this.yLine, 0);
         this.appear(this.dyLine, 0);
-        this.appear(plot.diffArea, 0);
       },
       shift: function(tar) {
         return tar.transition('shift').duration(25).ease('cubic');
@@ -152,10 +150,11 @@ function expFunRight() {
           .attr({
             y: y2(which.dy),
             height: height - y2(which.dy),
-          });
+          })
+
         this.shift(this.yBar).attr({
           width: t(which.y)
-        });
+        }).translate([0, height]);
         this.shift(this.dyLine).attr({
           y1: height,
           y2: y2(which.dy),
@@ -174,6 +173,10 @@ function expFunRight() {
     scope.$on('move', function() {
       plot.update();
       bars.update();
+    });
+
+    scope.$on('slide', function() {
+      plot.update();
     });
 
     scope.$on('addDot', function() {
@@ -202,7 +205,8 @@ function expFunRight() {
       y.range([height, 0]);
       y2.range([height, 0]);
       t.range([0, width]);
-      bg.attr("width", width).attr('height', height)
+      bg.attr("width", width).attr('height', height);
+      // clipPath.attr("width", width).attr('height', height);
       tAxis.update();
       yAxis.update();
       plot.update();

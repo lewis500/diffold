@@ -242,6 +242,7 @@ function expFunLeft() {
       },
       update: function() {
         var which = E.dots.which;
+        if(!which) return;
         this.shift(this.yBar)
           .attr({
             y: y(which.y),
@@ -271,6 +272,12 @@ function expFunLeft() {
       bars.update();
       E.fit.refit(sample(line2(E.dots.array)));
     });
+
+    scope.$on('slide', function() {
+      dots.update();
+      plot.update();
+      E.fit.refit(sample(line2(E.dots.array)));
+    })
 
     scope.$on('toggleOff', function() {
       bars.hide();
@@ -303,6 +310,8 @@ function expFunLeft() {
       y.range([height, 0]);
       t.range([0, width]);
       bg.attr("width", width).attr('height', height);
+      clipPath.attr("width", width).attr('height', height);
+
       bars.tBar.translate([0, height]);
       tAxis.update();
       yAxis.update();
@@ -312,6 +321,7 @@ function expFunLeft() {
 
     function sample(d) {
       var precision = 8;
+      if(!d) return;
       var path = document.createElementNS(d3.ns.prefix.svg, "path");
       path.setAttribute("d", d);
 

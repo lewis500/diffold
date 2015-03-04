@@ -12,6 +12,11 @@ span.hi{
   border-radius: 3px;
   /*color: white;*/
 }
+
+.jaxTitle div.MathJax_Display{
+  margin: 0px 0px 4px 0px;
+}
+
 span.hi.y {
   background-color: rgba(241, 169, 160, .6);
 }

@@ -90,27 +90,23 @@ function expCtrl($scope, $timeout, $q) {
       this.array.sort(function(a, b) {
         return a.t - b.t;
       });
-      // this.array[this.array.length - 1]
     },
     slideDots: function() {
       dots.array.forEach(function(d) {
         d.y = E.dots.C * Math.exp(0.5 * d.t);
       });
-      E.emitMove();
-      // $scope.$emit('move');
+      $scope.$emit('slide');
     },
-    clearDots: function() {
+    giveAnswer: function() {
       dots.array = [];
-      _.range(0, 4, .5)
+      _.range(0, 6, .5)
         .forEach(function(d) {
           E.dots.addDot({
             t: d,
             y: Math.exp(d * 0.5)
           });
         });
-
       $timeout(function() {
-        // $scope.$apply();
         $scope.$emit('addDot');
         E.hilite.toggleOff();
       });
@@ -119,28 +115,38 @@ function expCtrl($scope, $timeout, $q) {
 
   var fit = E.fit = {
     refit: function(v) {
+      if (!v > 0) return;
       this.array = v;
+      if (!dots.which) return;
       this.which = _.find(this.array, function(d) {
         return d.t >= dots.which.t;
       });
+      // if(!this.which)
     },
     array: [],
     which: null,
   };
 
   $timeout(function() {
+    var def = $q.defer();
     var j = 0;
     for (var i = 0; i < 4; i++) {
       var newDot = {
         t: j * .5,
         y: Math.exp(j * 0.5 * 0.5)
       };
+      // dots.newDatum = Object.make(Dot).init(newDot);
+      // dots.array.push(dots.newDatum);
       j++;
       dots.addDot(newDot);
     }
-  }, 500).then(function() {
+    $timeout(function() {
+      def.resolve();
+    }, 750);
+    return def.promise;
+  }).then(function() {
     $scope.$emit('toggleOff');
-  })
+  });
 
 }
 
