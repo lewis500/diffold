@@ -1,14 +1,6 @@
 SHORT TERM
 invert the colors (blue,red) of the line and dot in the quadratic function
-make a plot class to add margins before and after
-titles on charts
-put a value on the y axis of the quad function indicator dot
-fix the quadratic function equation so it's the real one
-
-place labels better
 slider for cart
-
-
 
 SHORT TERM
 write text about initial conditions for cart plot
@@ -16,18 +8,7 @@ make labels float in the middle of the functions, halfway
 
 have a dot that floats on the cart chart, on the left, to show the initial condition
 
-SLIDER
-have toggle off when the dots are cleared;
-do the slide process so that all dots are just moved up and down. no need to clear things;
-make a button to clear all dots;
- 
-LINE CHART
-put numbers on right side of right plot, too
-
-
-
 LONG TERM
-get a better font for y'
 show the derivative magnitude by the size of a tangent line again
 whenever you reference htings, color them with tspans. use a light shading to distinguish the left and right plots.
 make the circles pulse

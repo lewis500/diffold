@@ -5,7 +5,7 @@ function expFunRight() {
   // =====setup=====
   var M = {
     top: 20,
-    right: 10,
+    right: 20,
     bottom: 20,
     left: 10
   };
@@ -74,7 +74,7 @@ function expFunRight() {
         this.fun.tickSize(-height);
         this.g.translate([0, height]);
         this.g.call(this.fun);
-        this.label.translate([width - 8, height - 5])
+        this.label.translate([width - 12, height - 5])
       }
     };
 
@@ -83,15 +83,16 @@ function expFunRight() {
       fun: d3.svg.axis()
         .scale(y)
         .ticks(5)
-        .orient("left"),
+        .orient("right"),
       label: svg.append('g')
         .translate([5, 14])
         .append("text.label")
         .style("text-anchor", "left")
         .text("y'"),
       update: function() {
-        this.fun.tickSize(-width);
+        this.fun.tickSize(width);
         this.g.call(this.fun);
+        // this.g.translate([width, 0]);
       }
     };
 
