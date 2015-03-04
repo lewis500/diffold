@@ -94,7 +94,17 @@ function expFunRight() {
         this.g.call(this.fun);
       }
     };
-    var main = svg.append('g.main').attr('clip-path', 'url(#clip)')
+
+    var clipPath = svg.append('defs')
+      .append('svg:clipPath')
+      .attr('id', 'clipPathRight')
+      .append('rect')
+      .attr({
+        width: width,
+        height: height
+      });
+
+    var main = svg.append('g.main').attr('clip-path', 'url(#clipPathRight)')
 
     var plot = {
       goalPath: main.append('path.goalPath'),
@@ -109,9 +119,9 @@ function expFunRight() {
         this.tran(this.diffPath).attr('d', line(E.fit.array));
         var last = E.fit.array[E.fit.array.length - 1];
         if (!last) return;
-        this.label.translate([Math.min(t(last.y), width - 30), Math.max(y(last.dy), 15)]);
+        // this.label.translate([Math.min(t(last.y), width - 30), Math.max(y(last.dy), 15)]);
       },
-      label: main.append('g').append('text').text('F(y)').attr('x', 10)
+      // label: main.append('g').append('text').text('F(y)').attr('x', 10)
     };
 
     var bars = {

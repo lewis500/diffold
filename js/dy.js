@@ -42,8 +42,8 @@ function dyDer() {
 
   function link(scope, el, attr) {
     var E = scope.E;
-    var height = el[0].clientWidth - M.top - M.bottom;
     var width = el[0].clientWidth - M.left - M.right;
+    var height = width*0.6;
 
     var s = d3.select(el[0]).append("svg.dy")
       .attr("width", width + M.left + M.right)
@@ -118,7 +118,7 @@ function dyDer() {
 
     function widthResize() {
       width = el[0].clientWidth - M.left - M.right;
-      height = el[0].clientWidth - M.top - M.bottom;
+      height = width*0.75;
       s.attr('height', height + M.top + M.bottom);
       s.attr("width", width + M.left + M.right)
       y.range([height, 0]);

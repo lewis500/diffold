@@ -93,9 +93,9 @@ function expFunMiddle() {
         this.derPath.transition('redraw').duration(75).ease('cubic-out').attr('d', line(E.fit.array));
         var last = E.fit.array[E.fit.array.length - 1];
         if(!last) return;
-        this.label.translate([t(last.t), y(last.dy)]);
+        // this.label.translate([t(last.t), y(last.dy)]);
       },
-      label: main.append('g').append('text').text("y'(t)").attr('x', 10)
+      // label: main.append('g').append('text').text("y'(t)").attr('x', 10)
     };
 
     var bars = {

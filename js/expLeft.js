@@ -18,7 +18,7 @@ function expFunLeft() {
     .domain([0, 8]);
 
   var line = d3.svg.line()
-    .interpolate('monotone')
+    .interpolate('cardinal',.5)
     .x(function(d) {
       return t(d.t);
     })
@@ -206,9 +206,9 @@ function expFunLeft() {
         this.funPath.datum(E.dots.array).attr('d', line2);
         var last = E.dots.array[E.dots.array.length - 1];
         if (!last) return;
-        this.label.translate([t(last.t), y(last.y)])
+        // this.label.translate([t(last.t), y(last.y)])
       },
-      label: main.append('g').append('text').text('y(t)').attr('x', 10)
+      // label: main.append('g').append('text').text('y(t)').attr('x', 10)
     };
 
     var bars = {

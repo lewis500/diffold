@@ -71,6 +71,12 @@ function expCtrl($scope, $timeout, $q) {
     array: [],
     newDatum: null,
     which: null,
+    clearDots: function() {
+      this.array = [];
+      fit.array = [];
+      $scope.$emit('addDot');
+      E.emitMove();
+    },
     addDot: function(v) {
       this.newDatum = Object.make(Dot).init(v)
       this.array.push(this.newDatum);

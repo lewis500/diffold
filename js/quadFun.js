@@ -58,7 +58,7 @@ function quadFunDer() {
   function link(scope, el, attr, Q) {
     // var E = scope.E;
     var width = el[0].clientWidth - M.left - M.right;
-    var height = width * 0.4;
+    var height = width * 0.65;
 
     var s = d3.select(el[0]).append("svg.quad")
       .attr("width", width + M.left + M.right)
@@ -157,10 +157,12 @@ function quadFunDer() {
           x2: t(Q.dot.t)
         });
         this.tLabel.text(this.format(Q.dot.t)).translate([t(Q.dot.t),height ]);
+        this.yLabel.text(this.format(Q.dot.y)).translate([0,y(Q.dot.y) ]);
       },
       tLine: main.append('line.indicator'),
       yLine: main.append('line.indicator'),
-      tLabel: main.append('text.tValue').attr("dy","-.3em").attr('dx','.1em')
+      tLabel: main.append('text.tValue').attr("dy","-.3em").attr('dx','.1em'),
+      yLabel: main.append('text.yValue').attr("dx",".3em").attr('dy','-.2em')
     };
 
 
@@ -174,7 +176,7 @@ function quadFunDer() {
 
     function widthResize() {
       width = el[0].clientWidth - M.left - M.right;
-      height = width * 0.6;
+      height = width * 0.75;
       s.attr('height', height + M.top + M.bottom);
       s.attr('width', width + M.left + M.right);
       y.range([height, 0]);
