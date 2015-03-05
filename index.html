@@ -46,8 +46,8 @@
     <p>You're probably used to regular old equations like $ 2t - .5t^2 = 1.5 $. Here, "solving the equation" means finding a $t$ that makes the equation true. Below, change $ t $ until $ 2t - .5t^2 = 1.5 $.</p>
   </div>
   <div class='clearfix'></div>
-  <div class='col-xs-4 shadow-z-1 plot'>
-    <div quad-fun-der></div>
+  <div class='col-xs-4 shadow-z-1 plot' style='padding: 20px;'>
+    <div quad-fun-der class='shadow-z-2' style='padding: 6px;'></div>
   </div>
   <div class='clearfix'></div>
 
@@ -65,7 +65,7 @@
   <div class='clearfix'></div>
   <div ng-controller="expCtrl as E" class='shadow-z-1 col-xs-4 plot' style='padding: 20px;'>
     <p class='jaxTitle'>$$y' = 0.5 \cdot y$$</p>
-    <div dy-der class='shadow-z-2' style='padding: 5px;'></div>
+    <div dy-der class='shadow-z-2' style='padding: 10px;'></div>
   </div>
   <div class='clearfix'></div>
 
@@ -75,10 +75,7 @@
     <p style='line-height: 1.5em;'>Left-click the left plot to add points; right-click to delete. Points make a function <span class="hi y">$y(t)$</span>. The <a href="http://en.wikipedia.org/wiki/Derivative#The_derivative_as_a_function">derivative function</a> <span class='hi yprime'>$y'(t)$</span> appears on the middle plot. The right plot shows a function <span class='hi F'>$F(y)$</span>, giving $y'$ for each value of $y$, as well as your target <span class='hi tar'>$y'=0.5y$</span>. </p>
   </div>
   <div ng-controller="expCtrl as E">
-    <!--     <div class='row col-xs-10 shadow-z-1 expFun' style='padding: 20px;'>
-    
-    </div> -->
-    <div class='row col-xs-10 shadow-z-1 expFun' style='padding: 20px;'>
+    <div class='row col-xs-10 shadow-z-1 expFun plot' style='padding: 20px;'>
       <h4 style='text-align: center; margin-top: -8px'>Differential Equation Solver</h4>
       <div exp-fun-left class='shadow-z-2'>
         <p class='plotTitle'><span class="hi y">$y(t)$</span> </p>
@@ -125,7 +122,7 @@
     <div class='clearfix'></div>
 
     <div ng-controller="cartCtrl2 as C" class='col-xs-10'>
-      <div class="go row shadow-z-1" style='padding: 20px;'>
+      <div class="go row shadow-z-1 plot" style='padding: 20px;'>
         <div class="row shadow-z-2" style='margin: 5px 8px 20px 8px; padding: 10px;'>
           <div class='col-xs-4'>
             <button type='button' class='btn btn-raised btn-material-blue-400' ng-click="C.block.release()">release</button>

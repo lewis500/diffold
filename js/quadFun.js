@@ -35,7 +35,7 @@ function quadFunDer() {
   // =====setup=====
   var M = {
     top: 20,
-    right: 10,
+    right: 20,
     bottom: 20,
     left: 20
   };
