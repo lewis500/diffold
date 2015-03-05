@@ -37,14 +37,13 @@
           <cite title="The Use and Abuse of Art">The Use and Abuse of Art (1974)</cite>
         </footer>
       </blockquote>
-
     </div>
 
-    <p>The phrase "differential equation" is a harsh pair of science words, like "flux capacitor." If what Barzun says is true, just looking at them melted someone. What we are going to do to gently introduce them, in two parts. Today, we will just look at what they are and learn to solve a common one.</p>
+    <p>The phrase "differential equation" is a harsh pair of science words, like "flux capacitor." If what Barzun says is true, just looking at them melted someone. Don't be that guy!</p>
 
     <h3>definition</h3>
 
-    <p>You're probably used to regular old equations like $ 2t - .5t^2 = 1.5 $. Here, "solving the equation" means finding numbers that make the statement true. Below, change $ t $ until it's true that $ 2t - .5t^2 = 1.5 $.</p>
+    <p>You're probably used to regular old equations like $ 2t - .5t^2 = 1.5 $. Here, "solving the equation" means finding a $t$ that makes the equation true. Below, change $ t $ until $ 2t - .5t^2 = 1.5 $.</p>
   </div>
   <div class='clearfix'></div>
   <div class='col-xs-4 shadow-z-1 plot'>
@@ -61,7 +60,7 @@
 
     $$ y' = k \cdot y.$$
 
-    <p>It says, "The rate-of-change of $y$ is a multiple of $y$." Here is that fact plotted out for $k=.5$.</p>
+    <p>It says, "The rate-of-change of $y$ is a multiple, $k$, of $y$." Here is that fact plotted out for $k=.5$.</p>
   </div>
   <div class='clearfix'></div>
   <div ng-controller="expCtrl as E" class='shadow-z-1 col-xs-4 plot' style='padding: 20px;'>
@@ -71,23 +70,31 @@
   <div class='clearfix'></div>
 
   <div class='col-xs-7'>
-    <p>To solve the diffeq $y' = 0.5 \cdot y$, find a function $y(t)$ for which it's true. Below, you'll do that by hand.</p>
+    <p>To solve it, we need to find a function $y(t)$ for which it's true. Below, you'll do that by hand.</p>
     <h4>Instructions</h4>
-    <p style='line-height: 1.5em;'>Left-click the left plot to add points; right-click to delete. Points make a function <span class="hi y">$y(t)$</span>. The <a href="http://en.wikipedia.org/wiki/Derivative#The_derivative_as_a_function">derivative function</a> <span class='hi yprime'>$y'(t)$</span> appears on the middle plot. Finally, the right plot shows a function <span class='hi F'>$F(y)$</span>, giving $y'$ for each value of $y$, as well as your target <span class='hi tar'>$y'=0.5y$</span>. </p>
+    <p style='line-height: 1.5em;'>Left-click the left plot to add points; right-click to delete. Points make a function <span class="hi y">$y(t)$</span>. The <a href="http://en.wikipedia.org/wiki/Derivative#The_derivative_as_a_function">derivative function</a> <span class='hi yprime'>$y'(t)$</span> appears on the middle plot. The right plot shows a function <span class='hi F'>$F(y)$</span>, giving $y'$ for each value of $y$, as well as your target <span class='hi tar'>$y'=0.5y$</span>. </p>
   </div>
   <div ng-controller="expCtrl as E">
     <!--     <div class='row col-xs-10 shadow-z-1 expFun' style='padding: 20px;'>
     
     </div> -->
     <div class='row col-xs-10 shadow-z-1 expFun' style='padding: 20px;'>
-      
-      <div exp-fun-left class='shadow-z-2'> <p class='plotTitle'><span class="hi y">$y(t)$</span> </p></div>
+      <h4 style='text-align: center; margin-top: -8px'>Differential Equation Solver</h4>
+      <div exp-fun-left class='shadow-z-2'>
+        <p class='plotTitle'><span class="hi y">$y(t)$</span> </p>
+      </div>
       <!-- <p class='jaxTitle'>$$y' = 0.5 \cdot y$$</p> -->
-      <div exp-fun-middle class='shadow-z-2 noY'><p class='plotTitle'><span class='hi yprime'>$y'(t)$</span></p></div>
-      <div exp-fun-right class='shadow-z-2'><p class='plotTitle'><span class='hi F'>$F(y)$</span> &amp; <span class='hi tar'>$y'=0.5y$</span></p></div>
+      <div exp-fun-middle class='shadow-z-2 noY'>
+        <p class='plotTitle'><span class='hi yprime'>$y'(t)$</span>
+        </p>
+      </div>
+      <div exp-fun-right class='shadow-z-2'>
+        <p class='plotTitle'><span class='hi F'>$F(y)$</span> &amp; <span class='hi tar'>$y'=0.5y$</span>
+        </p>
+      </div>
     </div>
     <div class='col-xs-7'>
-      <button class='btn btn-material-blue-500' ng-click='E.dots.clearDots()'>Clear</button>
+      <button class='btn btn-material-blue-400' style='padding: 5px 10px 5px 10px;' ng-click='E.dots.clearDots()'>clear</button>
       <p>
         One solution to the equation is $$y(t) = e^{0.5t}.$$ To see that, click <a ng-click="E.dots.giveAnswer()">here</a>.
       </p>
@@ -98,7 +105,7 @@
         c = {{E.dots.C}}
       </div>
       <br>
-      <div slider-der slider ng-model="E.dots.C" min='.2' max='2' step='0.05' class='slider col-xs-5'></div>
+      <div slider-der ng-model="E.dots.C" min='.2' max='2' step='0.05' class='slider col-xs-5'></div>
 
     </div>
     <br>
@@ -117,20 +124,20 @@
     </div>
     <div class='clearfix'></div>
 
-    <div ng-controller="cartCtrl2 as C" class='col-xs-9'>
+    <div ng-controller="cartCtrl2 as C" class='col-xs-10'>
       <div class="go row shadow-z-1" style='padding: 20px;'>
         <div class="row shadow-z-2" style='margin: 5px 8px 20px 8px; padding: 10px;'>
-          <div class='button btn btn-raised col-xs-2 btn-material-blue-400' ng-click="C.block.release()">release</div>
-          <div class='col-xs-5'>
-
-            <!-- <div slider ng-model="C.block.v01" start=0 end=1 step=0.025 class='slider slider-material-blue'></div> -->
-            <div>
-              {{C.block.v01}}
-            </div>
+          <div class='col-xs-4'>
+            <button type='button' class='btn btn-raised btn-material-blue-400' ng-click="C.block.release()">release</button>
           </div>
+          <div class='col-xs-4 col-xs-offset-1'>
+            v<sub>0</sub> = {{C.block.v01}} cm/sec
+          </div>
+          <br>
+          <div slider-der ng-model="C.block.v01" min='.02' max='1' step='0.05' class='slider col-xs-5'></div>
         </div>
-        <div cart-chart class='shadow-z-2 col-xs-4'></div>
-        <div cart-der2 class='shadow-z-2 col-xs-7 pull-right' style='margin-left: 20px'></div>
+        <div cart-chart class='shadow-z-2 col-xs-4' style='width: 38%'></div>
+        <div cart-der2 class='shadow-z-2 col-xs-7 pull-right' style='margin-left: 10px'></div>
         <!-- <div cart-chart class='col-xs-3 shadow-z-1' ></div> -->
       </div>
     </div>

@@ -48,7 +48,7 @@ function cartDer2() {
   var M = {
     top: 20,
     right: 35,
-    bottom: 25,
+    bottom: 30,
     left: 10
   };
 
@@ -93,7 +93,7 @@ function cartDer2() {
       label: svg.append('g')
         .append("text.label")
         .style("text-anchor", "middle")
-        .text("x").attr('y', '1.8em'),
+        .text("x (cm)").attr('y', '1.8em'),
       update: function() {
         this.fun.tickSize(-height);
         this.g.translate([0, height]);
@@ -195,7 +195,7 @@ function cartChart() {
   var M = {
     top: 20,
     right: 10,
-    bottom: 25,
+    bottom: 30,
     left: 20
   };
 
@@ -204,7 +204,7 @@ function cartChart() {
     .clamp(true);
 
   var y = d3.scale.linear()
-    .domain([0, 1])
+    .domain([0, 1.1])
     .clamp(true);
 
   var line = d3.svg.line()
@@ -262,7 +262,7 @@ function cartChart() {
         .translate([5, 14])
         .append("text.label")
         .style("text-anchor", "left")
-        .text("v"),
+        .text("v (cm/sec)"),
       update: function() {
         this.fun.tickSize(-width);
         this.g.call(this.fun);
@@ -276,13 +276,53 @@ function cartChart() {
       update: function() {
         if (!this.funPath) return;
         this.funPath.attr('d', line(C.block.array));
-      }
+      },
+      changeV: function() {
+        this.v0.translate([0, y(C.block.v01)]);
+      },
+      v0: (function() {
+          var g = main.append('g.v0')
+          g.append('line')
+            .attr({
+              x1: 0,
+              x2: 4,
+              stroke: 'black',
+              'stroke-width': 2
+            });
+          g.append('rect').attr({
+            width: 23,
+            height: 21,
+            rx: 3,
+            ry: 3,
+            opacity: .4,
+            fill: '#fff',
+            x: 2,
+            y: -9
+          })
+          var t = g.append('text').attr({
+            'x': 6,
+            y: 3
+          })
+          .append('tspan');
+          t.text('v');
+          t.append('tspan').attr('baseline-shift', 'sub').text('0');
+          return g;
+        })()
+        // v0: main.append('g.v0').append('text').text('v\u2080')
     };
 
 
     scope.$on('moveBlock', function() {
       plot.update();
     });
+
+    scope.$watch(function() {
+      return C.block.v01;
+    }, function() {
+      plot.changeV();
+    });
+
+
 
     scope.$on('windowResize', widthResize);
 
