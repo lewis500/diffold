@@ -67,13 +67,6 @@ function quadFunDer() {
     var svg = s.append("g")
       .translate([M.left, M.top]);
 
-    var clipPath = s.append('defs').append('clip-path')
-      .append('rect#clipPath2')
-      .attr({
-        width: width,
-        height: height
-      });
-
     var bg = svg.append('rect.background')
       .attr({
         height: height,
@@ -119,7 +112,7 @@ function quadFunDer() {
       }
     };
 
-    var main = svg.append('g.main').attr('clip-path', 'url(#clipPath2)')
+    var main = svg.append('g.main')
 
 
     var plot = {
@@ -136,7 +129,6 @@ function quadFunDer() {
           });
       }
     };
-
 
     var dot = {
       format: d3.format('.1f'),
@@ -156,13 +148,13 @@ function quadFunDer() {
           x1: 0,
           x2: t(Q.dot.t)
         });
-        this.tLabel.text(this.format(Q.dot.t)).translate([t(Q.dot.t),height ]);
-        this.yLabel.text(this.format(Q.dot.y)).translate([0,y(Q.dot.y) ]);
+        this.tLabel.text(this.format(Q.dot.t)).translate([t(Q.dot.t), height]);
+        this.yLabel.text(this.format(Q.dot.y)).translate([0, y(Q.dot.y)]);
       },
       tLine: main.append('line.indicator'),
       yLine: main.append('line.indicator'),
-      tLabel: main.append('text.tValue').attr("dy","-.3em").attr('dx','.1em'),
-      yLabel: main.append('text.yValue').attr("dx",".3em").attr('dy','-.2em')
+      tLabel: main.append('text.tValue').attr("dy", "-.3em").attr('dx', '.1em'),
+      yLabel: main.append('text.yValue').attr("dx", ".3em").attr('dy', '-.2em')
     };
 
 
@@ -176,13 +168,12 @@ function quadFunDer() {
 
     function widthResize() {
       width = el[0].clientWidth - M.left - M.right;
-      height = width * 0.75;
+      height = width * 0.55;
       s.attr('height', height + M.top + M.bottom);
       s.attr('width', width + M.left + M.right);
       y.range([height, 0]);
       t.range([0, width]);
       bg.attr("width", width).attr('height', height);
-      // tLabel
       tAxis.update();
       yAxis.update();
       plot.update();

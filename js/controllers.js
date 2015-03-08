@@ -127,7 +127,6 @@ function expCtrl($scope, $timeout, $q) {
       this.which = _.find(this.array, function(d) {
         return d.t >= dots.which.t;
       });
-      // if(!this.which)
     },
     array: [],
     which: null,
@@ -141,8 +140,6 @@ function expCtrl($scope, $timeout, $q) {
         t: j * .5,
         y: Math.exp(j * 0.5 * 0.5)
       };
-      // dots.newDatum = Object.make(Dot).init(newDot);
-      // dots.array.push(dots.newDatum);
       j++;
       dots.addDot(newDot);
     }
@@ -156,15 +153,4 @@ function expCtrl($scope, $timeout, $q) {
 
 }
 
-
-
-angular.module('mainApp').controller('expCtrl', expCtrl)
-  .controller('funCtrl', function($scope) {
-    var fun = this;
-    fun.equation = function(d) {
-      return [d, -Math.pow(d, 2) + 4 * d];
-    };
-    fun.data = _.range(0, 4, .125).map(fun.equation);
-    fun.point = [0, 1];
-    fun.goal = 2;
-  });
+angular.module('mainApp').controller('expCtrl', expCtrl);

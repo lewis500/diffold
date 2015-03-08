@@ -1,0 +1,37 @@
+<div class='col-xs-7 '>
+  <!-- <p>A differential equation is a statement, like $y' = ky$ or $y' = 2t - 5$, that involves the derivative of an unknown function.The weird thing about them is that the solution is a <em>function</em>, not a number, that makes the equation true.</p> -->
+
+  <p>To start, recall that the derivative of a function is the slope of a line tangent to the function. Mouse over the function <span class='hi y'>$y(t) = t^3 - 7t^2 + 14t - 8$</span> below. The slope at every point is the height of a right triangle whose width is 1 and whose hypoteneuse is tangent to the line(Verify this yourself!). Recording the derivative $y'$ at each $t$, we get a "derivative function" <span class='hi yprime'>$y'(t)$</span> on the right.</p>
+</div>
+
+<div class='clearfix'> </div>
+
+<div ng-controller="slopeCtrl as S" class='col-xs-8 shadow-z-1 plot clearfix' style='padding: 20px'>
+  <div class='col-xs-5 shadow-z-2' style='width: 48%;' slope-der>
+    <p class='plotTitle'><span class='hi y'>$y(t)$</span>
+    </p>
+  </div>
+  <div class='col-xs-5 shadow-z-2' style='margin-left: 10px; width: 48%' slope-der2>
+    <p class='plotTitle'><span class='hi yprime'>$y'(t)$</span>
+    </p>
+  </div>
+</div>
+
+<div class='col-xs-7'>
+  <p>What we just did was start out with a function and then find its derivatives. With a diffeq, we do the opposite. A diffeq is a statement, like $y' = ky$ or $y' = 2t - 5$, that involves the derivative of a mysterious function; and its solution is a function, like $y(t) = t^3 + 2^t$ or something, that makes the equation true.</p>
+  <p>Below, your job is to solve the diffeq $$ y' = 2t - 5.$$ To do this, you'll create a function $y(t)$ by clicking the left plot to add dots (right-click to delete). As you craft $y(t)$, its derivative function $y'(t)$ appears on the right. The goal is to make $y'(t)$ line up with $2t - 5$.</p>
+</div>
+
+<div class='clearfix;'></div>
+<div ng-controller="quadCtrl as E" class='col-xs-8 shadow-z-1 plot clearfix' style='padding: 20px'>
+  <div class='col-xs-5 shadow-z-2' style='width: 48%;' quad-fun-left>
+    <p class='plotTitle'><span class='hi y'>$y(t)$</span>
+    </p>
+  </div>
+  <div quad-fun-middle class='shadow-z-2 noY col-xs-5' style='width: 48%; margin-left: 15px'>
+    <p class='plotTitle'><span class='hi yprime'>$y'(t)$</span>
+    </p>
+  </div>
+</div>
+
+<div class='clearfix;'></div>

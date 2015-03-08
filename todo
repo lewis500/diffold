@@ -1,9 +1,16 @@
-add title to first chart
-switch colors first chart
+SIMPLIFICATION
+different style files
+share scales?
+put lines in the objects
+
+
 
 
 TO DO
-Create an example for the first equation using a box, where you've got a certain perimeter and you want to maximize it.
+simplify, simply, simplfy
+
+
+
 
 CART
 isntead of drawing a line, have the line already draw, with a colored label for $e^{kt}$, and have the MathJAX update it.
@@ -14,12 +21,7 @@ show a faint outline of the true path for the cart, or have a dot just moving al
 put title on the top chart
 
 
-
-
-
-
 SHORT TERM
-put colroed titles on the top two charts
 invert the colors (blue,red) of the line and dot in the quadratic function
 slider for cart
 
@@ -29,7 +31,9 @@ write text about initial conditions for cart plot
 
 
 LONG TERM
-show the derivative magnitude by the size of a tangent line again
-whenever you reference htings, color them with tspans. use a light shading to distinguish the left and right plots.
+redo ordering on the F(y) plot
+have the plots rescale
+Fix whatever is wrong with widths and padding
+put white strokes around circles
 make the circles pulse
 make a video on how to use it
