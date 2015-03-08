@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<base target="_blank">
 
 <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
@@ -76,7 +77,8 @@
   </div>
   <div ng-controller="expCtrl as E">
     <div class='row col-xs-10 shadow-z-1 expFun plot' style='padding: 20px;'>
-      <h4 style='text-align: center; margin-top: -8px'>Differential Equation Solver</h4>
+      <h4 style='text-align: center; margin-top: -8px'>Differential Equation Solver       <button class='btn btn-material-blue-400' style='padding: 5px 10px 5px 10px;' ng-click='E.dots.clearDots()'>clear</button></h4>
+
       <div exp-fun-left class='shadow-z-2'>
         <p class='plotTitle'><span class="hi y">$y(t)$</span> </p>
       </div>
@@ -91,7 +93,7 @@
       </div>
     </div>
     <div class='col-xs-7'>
-      <button class='btn btn-material-blue-400' style='padding: 5px 10px 5px 10px;' ng-click='E.dots.clearDots()'>clear</button>
+
       <p>
         One solution to the equation is $$y(t) = e^{0.5t}.$$ To see that, click <a ng-click="E.dots.giveAnswer()">here</a>.
       </p>

@@ -8,6 +8,9 @@ body {
 h1, h2, h3, h4, h5, button {
   font-family: 'PT Sans'
 }
+a{
+  target: _blank;
+}
 
 .plot{
   margin: 2px 10px 12px 22px;
