@@ -31,7 +31,7 @@ span.hi {
   text-align: center;
 }
 span.hi.y {
-  background-color: rgba(242, 38, 19, .5);
+  background-color: rgba(242, 38, 19, .52);
 }
 span.hi.F {
   padding-left: 1px;
@@ -195,6 +195,7 @@ line, path {
   stroke: #F22613;
   stroke-width: 1.5px;
   fill: none;
+  opacity: .8;
   pointer-events: none;
 }
 .derPath {

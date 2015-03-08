@@ -1,40 +1,6 @@
-The first differential equation we'll solve is y' = 2 - 1.5 t.  The solution will be a function $y(t)$. To find a solution, try out the different candidate functions below. For each candidate, mouse over left plot to see the derivative (its slope) of $y(t)$ every $t$. As you go along, the derivative will get plotted on the right plot as the derivative function $y'(t)$. You'll know the answer is correct when $y'(t) = 2 - 1.5 t$ like we want.
+add title to first chart
+switch colors first chart
 
-INSERT PLOT
-
-To get an even more hands-on feel for solving the equation, we're going to do another one manually. The goal here is to draw a function $y(t)$ whose derivative function $y'(t)$ is $t^2 +5t -1$. You draw a function by clicking dots; right-click to delete one. As you draw the function, its derivatives are calculated and shown as $y'(t)$ on the right plot. Give it a try.
-
-
-
-CALCULUS, MY DEAR READER
-
-Even though the equations above were good illustrations, they're actually pretty trivial. To solve them, we could have just used basic calculs rules by integrating both sides:
-\int y'(t) = \int 2t - 1.5 t^2 =\cdots
-y(t) = 2t - 1.5 t^2 + C.
-
-where C could be any number. Try drag this slider for C up and down. As you can see, the differential equation is satisfied <em>no matter what C is </em>. [as you drag slider, the mathjax updates in real time, too.]
-
-
-ONE EQUATION TO RULE THEM ALL
-
-Now, we'll move onto a harder equation of the type you'll actually see in a differential equations class. Suppose now that $y$ is the number of baceteria in a petri dish. If we say "the population $y$ grows constantly at rate $k$," that's equivalent to the differential equation
-
-$$y' = k \cdot y$.
-
-(See, we're using differential equations whenever we talk about growth rates of debt, population, etc! They're not that weird.)
-
-What's tricky about this diffeq is that y is on both sides. We can't just integrate it like we did before, because we don't know what the integral of y is if we don't know what y is in the first place. Calculus is futile. We'll solve it by hand like we did above, except now there's a third plot. The third plot shows 
-
-
-
-
-Suppose you have a cart that starts out moving out with some velocity v_0 but then gets slowed down by friction. It turns out that the rate at which friction slows the cart down is proportional to the velocity the cart is moving. So, we have 
-
-$$
-
-
-
-We'll build up to solving this equation manually.
 
 TO DO
 Create an example for the first equation using a box, where you've got a certain perimeter and you want to maximize it.
