@@ -76,44 +76,43 @@ function quadFunDer() {
         Q.update(t.invert(d3.mouse(this)[0]));
       });
 
-    var tAxis = {
-      g: svg.append("g.t.axis").translate([0, height]),
-      fun: d3.svg.axis()
-        .scale(t)
-        .ticks(5)
-        .tickSize(-height)
-        .orient("bottom"),
-      label: svg.append('g')
-        .append("text.label")
-        .style("text-anchor", "right")
-        .text("t"),
-      update: function() {
-        this.fun.tickSize(-height);
-        this.g.translate([0, height]);
-        this.g.call(this.fun);
-        this.label.translate([width - 8, height - 5])
-      }
-    };
+    // var tAxis = {
+    //   g: svg.append("g.t.axis").translate([0, height]),
+    //   fun: d3.svg.axis()
+    //     .scale(t)
+    //     .ticks(5)
+    //     .tickSize(-height)
+    //     .orient("bottom"),
+    //   label: svg.append('g')
+    //     .append("text.label")
+    //     .style("text-anchor", "right")
+    //     .text("t"),
+    //   update: function() {
+    //     this.fun.tickSize(-height);
+    //     this.g.translate([0, height]);
+    //     this.g.call(this.fun);
+    //     this.label.translate([width - 8, height - 5])
+    //   }
+    // };
 
-    var yAxis = {
-      g: svg.append("g.y.axis"),
-      fun: d3.svg.axis()
-        .scale(y)
-        .ticks(5)
-        .orient("left"),
-      label: svg.append('g')
-        .translate([5, 14])
-        .append("text.label")
-        .style("text-anchor", "left")
-        .text("y"),
-      update: function() {
-        this.fun.tickSize(-width);
-        this.g.call(this.fun);
-      }
-    };
+    // var yAxis = {
+    //   g: svg.append("g.y.axis"),
+    //   fun: d3.svg.axis()
+    //     .scale(y)
+    //     .ticks(5)
+    //     .orient("left"),
+    //   label: svg.append('g')
+    //     .translate([5, 14])
+    //     .append("text.label")
+    //     .style("text-anchor", "left")
+    //     .text("y"),
+    //   update: function() {
+    //     this.fun.tickSize(-width);
+    //     this.g.call(this.fun);
+    //   }
+    // };
 
     var main = svg.append('g.main')
-
 
     var plot = {
       quadPath: main.append('path.quadPath'),

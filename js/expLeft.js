@@ -1,7 +1,48 @@
 angular.module('mainApp')
-  .directive('expFunLeft', expFunLeft);
+  .directive('expFunLeft', expFunLeft)
+  .factory('expTools', expTools);
 
-function expFunLeft() {
+// function expTools() {
+
+//   var t = d3.scale.linear()
+//     .domain([0, 8])
+//     .clamp(true);
+
+//   var y = d3.scale.linear()
+//     .domain([-2, 10]);
+
+//   var y2 = d3.scale.linear()
+//     .domain([-2, 10]).clamp(true);
+
+//   var line = d3.svg.line()
+//     .interpolate('cardinal', .5)
+//     .x(function(d) {
+//       return t(d.t);
+//     })
+//     .y(function(d) {
+//       return y(d.dy);
+//     });
+
+//   var line2 = d3.svg.line()
+//     .interpolate('cardinal', .2)
+//     .x(function(d) {
+//       return t(d.t);
+//     })
+//     .y(function(d) {
+//       return y(d.y);
+//     });
+
+//   return {
+//     t: t,
+//     y: y,
+//     line: line,
+//     line2: line2,
+//     y2: y2
+//   };
+// }
+
+
+function expFunLeft(drawTools) {
   // =====setup=====
   var M = {
     top: 20,
@@ -18,7 +59,7 @@ function expFunLeft() {
     .domain([0, 8]);
 
   var line = d3.svg.line()
-    .interpolate('cardinal',.5)
+    .interpolate('cardinal', .5)
     .x(function(d) {
       return t(d.t);
     })
@@ -90,41 +131,44 @@ function expFunLeft() {
 
     })();
 
-    var tAxis = {
-      g: svg.append("g.t.axis").translate([0, height]),
-      fun: d3.svg.axis()
-        .scale(t)
-        .ticks(5)
-        .tickSize(-height)
-        .orient("bottom"),
-      label: svg.append('g')
-        .append("text.label")
-        .style("text-anchor", "right")
-        .text("t"),
-      update: function() {
-        this.fun.tickSize(-height);
-        this.g.translate([0, height]);
-        this.g.call(this.fun);
-        this.label.translate([width - 8, height - 5])
-      }
-    };
+    // var tAxis = {
+    //   g: svg.append("g.t.axis").translate([0, height]),
+    //   fun: d3.svg.axis()
+    //     .scale(t)
+    //     .ticks(5)
+    //     .tickSize(-height)
+    //     .orient("bottom"),
+    //   label: svg.append('g')
+    //     .append("text.label")
+    //     .style("text-anchor", "right")
+    //     .text("t"),
+    //   update: function() {
+    //     this.fun.tickSize(-height);
+    //     this.g.translate([0, height]);
+    //     this.g.call(this.fun);
+    //     this.label.translate([width - 8, height - 5])
+    //   }
+    // };
 
-    var yAxis = {
-      g: svg.append("g.y.axis"),
-      fun: d3.svg.axis()
-        .scale(y)
-        .ticks(5)
-        .orient("left"),
-      label: svg.append('g')
-        .translate([5, 14])
-        .append("text.label")
-        .style("text-anchor", "left")
-        .text("y"),
-      update: function() {
-        this.fun.tickSize(-width);
-        this.g.call(this.fun);
-      }
-    };
+    var tAxis = drawTools.tAxis(t, svg);
+    var yAxis = drawTools.yAxis(y, svg);
+
+    // var yAxis = {
+    //   g: svg.append("g.y.axis"),
+    //   fun: d3.svg.axis()
+    //     .scale(y)
+    //     .ticks(5)
+    //     .orient("left"),
+    //   label: svg.append('g')
+    //     .translate([5, 14])
+    //     .append("text.label")
+    //     .style("text-anchor", "left")
+    //     .text("y"),
+    //   update: function() {
+    //     this.fun.tickSize(-width);
+    //     this.g.call(this.fun);
+    //   }
+    // };
 
     var main = svg.append('g.main').attr('clip-path', 'url(#clipPathLeft)')
 
@@ -242,7 +286,7 @@ function expFunLeft() {
       },
       update: function() {
         var which = E.dots.which;
-        if(!which) return;
+        if (!which) return;
         this.shift(this.yBar)
           .attr({
             y: y(which.y),
@@ -321,7 +365,7 @@ function expFunLeft() {
 
     function sample(d) {
       var precision = 8;
-      if(!d) return;
+      if (!d) return;
       var path = document.createElementNS(d3.ns.prefix.svg, "path");
       path.setAttribute("d", d);
 

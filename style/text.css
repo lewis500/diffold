@@ -1,0 +1,54 @@
+h1, h2, h3, h4, h5, button {
+  font-family: 'PT Sans'
+}
+a {
+  target: _blank;
+}
+
+text {
+  pointer-events: none;
+}
+span.hi.y {
+  background-color: rgba(242, 38, 19, .52);
+}
+span.hi.F {
+  padding-left: 1px;
+  background-color: rgba(154, 18, 179, .35);
+}
+span.hi.yprime {
+  background-color: rgba(25, 181, 254, .5);
+}
+span.hi.tar {
+  background-color: rgba(247, 202, 24, .6);
+}
+
+p{
+	width: 60%;
+}
+
+span.hi {
+  padding: 4px;
+  border-radius: 2px;
+  /*color: white;*/
+}
+
+p.plotTitle span.hi {
+  padding: 6px;
+}
+strong {
+  font-weight: 700;
+}
+
+.plotTitle {
+  text-align: center;
+  margin: 15px 0px -10px 0px;
+}
+
+.jaxTitle div.MathJax_Display {
+  margin: 0px 0px 4px 0px;
+  text-align: center;
+}
+
+text {
+  pointer-events: none;
+}

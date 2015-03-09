@@ -1,0 +1,62 @@
+<p>To solve it, we need to find a function $y(t)$ for which it's true. Below, you'll do that by hand.</p>
+<h4>Instructions</h4>
+<p style='line-height: 1.5em;'>Left-click the left plot to add points; right-click to delete. Points make a function <span class="hi y">$y(t)$</span>. The <a href="http://en.wikipedia.org/wiki/Derivative#The_derivative_as_a_function">derivative function</a> <span class='hi yprime'>$y'(t)$</span> appears on the middle plot. The right plot shows a function <span class='hi F'>$F(y)$</span>, giving $y'$ for each value of $y$, as well as your target <span class='hi tar'>$y'=0.5y$</span>. </p>
+
+<div ng-controller="expCtrl as E">
+  <div class='row col-xs-10 shadow-z-1 expFun plot' style='padding: 20px;'>
+    <h4 style='text-align: center; margin-top: -8px'>Differential Equation Solver       <button class='btn btn-material-blue-400' style='padding: 5px 10px 5px 10px;' ng-click='E.dots.clearDots()'>clear</button></h4>
+
+    <div exp-fun-left class='shadow-z-2'>
+      <p class='plotTitle'><span class="hi y">$y(t)$</span> </p>
+    </div>
+    <div exp-fun-middle class='shadow-z-2 noY'>
+      <p class='plotTitle'><span class='hi yprime'>$y'(t)$</span>
+      </p>
+    </div>
+    <div exp-fun-right class='shadow-z-2'>
+      <p class='plotTitle'><span class='hi F'>$F(y)$</span> &amp; <span class='hi tar'>$y'=0.5y$</span>
+      </p>
+    </div>
+  </div>
+  <p>
+    One solution to the equation is $$y(t) = e^{0.5t}.$$ To see that, click <a ng-click="E.dots.giveAnswer()">here</a>.
+  </p>
+  <p>
+    A solution is any function like $$ y(t) = c \cdot e^{0.5 t},$$ where $e$ is Euler's number $2.718$ and $c$ can be <em>any</em> number. To see that any $c$ will work, click here to draw $c\cdot e^{kt}$ and drag the slider below to move $c$.
+  </p>
+  <div class='col-xs-3 col-xs-offset-1'>
+    c = {{E.dots.C}}
+  </div>
+  <br>
+  <div slider-der ng-model="E.dots.C" min='.2' max='2' step='0.05' class='slider col-xs-5'></div>
+
+  <br>
+  <h3>fact? or friction?</h3>
+
+  <p>
+    Let's use this diffEQ in a more physical example. Suppose you launch a wheeled cart at velocity $v_0$. Friction slows it down at a rate $k$ proportional to the velocity; that is, the faster it's going, the more friction slows it down. Now we have
+  </p>
+
+  $$ v' = -kv $$
+
+  <p>
+    just like above, except the coefficient on $v$ is negative.
+  </p>
+
+  <div ng-controller="cartCtrl2 as C" class='col-xs-10'>
+    <div class="go row shadow-z-1 plot" style='padding: 20px;'>
+      <div class="row shadow-z-2" style='margin: 5px 8px 20px 8px; padding: 10px;'>
+        <div class='col-xs-4'>
+          <button type='button' class='btn btn-raised btn-material-blue-400' ng-click="C.block.release()">release</button>
+        </div>
+        <div class='col-xs-4 col-xs-offset-1'>
+          v<sub>0</sub> = {{C.block.v01}} cm/sec
+        </div>
+        <br>
+        <div slider-der ng-model="C.block.v01" min='.02' max='1' step='0.05' class='slider col-xs-5'></div>
+      </div>
+      <div cart-chart class='shadow-z-2 col-xs-4' style='width: 38%'></div>
+      <div cart-der2 class='shadow-z-2 col-xs-7 pull-right' style='margin-left: 10px'></div>
+      <!-- <div cart-chart class='col-xs-3 shadow-z-1' ></div> -->
+    </div>
+  </div>

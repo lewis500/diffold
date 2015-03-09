@@ -1,8 +1,14 @@
 SIMPLIFICATION
-different style files
-share scales?
-put lines in the objects
+share scales for exp ones
 
+
+
+use factories to share scales, etc.
+put lines in the objects
+use ng-include to break up stuff
+make the whole thing col-xs-7 or something
+
+get rid of derPath, diff, etc. have standards for y, dy, etc.
 
 
 

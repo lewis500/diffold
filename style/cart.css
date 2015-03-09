@@ -1,0 +1,32 @@
+rect.block {
+  fill: #EF4836;
+  opacity: 0.9;
+}
+g.block {
+  fill: #F22613;
+  cursor: pointer;
+}
+.spring {
+  fill: none;
+  stroke-width: 3px;
+  stroke: #888;
+  pointer-events: none;
+  stroke-linecap: round;
+}
+circle.wheel1 {
+  stroke-dasharray: 2, 4;
+  stroke-linecap: round;
+  stroke: #22313F;
+  stroke-width: 2px;
+  fill: #22313F;
+  /*fill-opacity: 0.2;*/
+}
+circle.wheel {
+  stroke-dasharray: 1.5, 4;
+  stroke-linecap: round;
+  stroke: #fff;
+  stroke-width: 2px;
+  fill: none;
+  /*fi*/
+  /*fill: none;*/
+}
