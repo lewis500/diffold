@@ -1,56 +1,7 @@
 angular.module('mainApp')
-  .directive('expFunLeft', expFunLeft)
-  .factory('expTools', expTools);
+  .directive('expFunLeft', expFunLeft);
 
-// function expTools() {
-
-//   var t = d3.scale.linear()
-//     .domain([0, 8])
-//     .clamp(true);
-
-//   var y = d3.scale.linear()
-//     .domain([-2, 10]);
-
-//   var y2 = d3.scale.linear()
-//     .domain([-2, 10]).clamp(true);
-
-//   var line = d3.svg.line()
-//     .interpolate('cardinal', .5)
-//     .x(function(d) {
-//       return t(d.t);
-//     })
-//     .y(function(d) {
-//       return y(d.dy);
-//     });
-
-//   var line2 = d3.svg.line()
-//     .interpolate('cardinal', .2)
-//     .x(function(d) {
-//       return t(d.t);
-//     })
-//     .y(function(d) {
-//       return y(d.y);
-//     });
-
-//   return {
-//     t: t,
-//     y: y,
-//     line: line,
-//     line2: line2,
-//     y2: y2
-//   };
-// }
-
-
-function expFunLeft(drawTools) {
-  // =====setup=====
-  var M = {
-    top: 20,
-    right: 10,
-    bottom: 20,
-    left: 20
-  };
-
+function expTools() {
   var t = d3.scale.linear()
     .domain([0, 8])
     .clamp(true);
@@ -76,11 +27,33 @@ function expFunLeft(drawTools) {
       return y(d.y);
     });
 
-  function link(scope, el, attr) {
-    var E = scope.E;
-    var height = el[0].clientWidth - M.top - M.bottom;
-    var width = el[0].clientWidth - M.left - M.right;
+  return {
+    t: t,
+    line: line,
+    line2: line2
+  };
+}
 
+function expFunLeft(drawTools) {
+  // =====setup=====
+  function link(scope, el, attr) {
+    var M = {
+      top: 20,
+      right: 10,
+      bottom: 20,
+      left: 20
+    };
+
+    var E = scope.E;
+    // var height = el[0].clientWidth - M.top - M.bottom;
+    // var width = el[0].clientWidth - M.left - M.right;
+    var svg = d3.select(el[0]).append("svg.expLeft");
+
+    // var plot = drawTools(svg, t, y, M);
+
+
+
+    // var s = d3.select()
     var svg = d3.select(el[0]).append("svg.exp")
       .attr("width", '100%')
       .attr("height", height + M.top + M.bottom)
@@ -191,7 +164,8 @@ function expFunLeft(drawTools) {
           E.hilite.toggleOff();
         }),
       add: function() {
-        this.circles = main.selectAll('.dot')
+        this.circles = main
+          .selectAll('.dot')
           .data(E.dots.array, function(d) {
             return d.id;
           });
@@ -228,7 +202,7 @@ function expFunLeft(drawTools) {
               .attr('r', 8)
           });
 
-        newD.append('circle')
+        newD.append('circle.dot3')
           .attr({
             r: 4,
             'pointer-events': 'none'
@@ -248,11 +222,7 @@ function expFunLeft(drawTools) {
       funPath: main.append('path.funPath'),
       update: function() {
         this.funPath.datum(E.dots.array).attr('d', line2);
-        var last = E.dots.array[E.dots.array.length - 1];
-        if (!last) return;
-        // this.label.translate([t(last.t), y(last.y)])
       },
-      // label: main.append('g').append('text').text('y(t)').attr('x', 10)
     };
 
     var bars = {
@@ -355,10 +325,9 @@ function expFunLeft(drawTools) {
       t.range([0, width]);
       bg.attr("width", width).attr('height', height);
       clipPath.attr("width", width).attr('height', height);
-
       bars.tBar.translate([0, height]);
-      tAxis.update();
-      yAxis.update();
+      tAxis.update(width, height);
+      yAxis.update(width);
       dots.update();
       plot.update();
     }

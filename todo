@@ -1,7 +1,19 @@
+SOL
+use a factory to share among the exp plots
+implement drawtools on everything
+start out with a few dots done
+add the pulsing dots directive
+zero lines
+make triangle disappear when not seen
+
+
 SIMPLIFICATION
+get rid of global width, height variables
+make clippath updateable
+puts the dots and data structures and such in a factory
+
 share scales for exp ones
-
-
+replace plot with 
 
 use factories to share scales, etc.
 put lines in the objects

@@ -113,10 +113,10 @@ function quadTools() {
     .clamp(true);
 
   var y = d3.scale.linear()
-    .domain([-2, 10]);
+    .domain([-2, 12]);
 
   var y2 = d3.scale.linear()
-    .domain([-2, 10]).clamp(true);
+    .domain([-2, 12]).clamp(true);
 
   var line = d3.svg.line()
     .interpolate('cardinal', .5)
@@ -145,49 +145,7 @@ function quadTools() {
   };
 }
 
-function drawTools() {
-  return {
-    yAxis: function(y, svg) {
-      var yAxis = {
-        g: svg.append("g.y.axis"),
-        fun: d3.svg.axis()
-          .scale(y)
-          .ticks(5)
-          .orient("left"),
-        label: svg.append('g')
-          .translate([5, 14])
-          .append("text.label")
-          .style("text-anchor", "left")
-          .text("y"),
-        update: function(width) {
-          this.fun.tickSize(-width);
-          this.g.call(this.fun);
-        }
-      };
-      return yAxis;
-    },
-    tAxis: function(t, svg) {
-      var tAxis = {
-        g: svg.append("g.t.axis"),
-        fun: d3.svg.axis()
-          .scale(t)
-          .ticks(5)
-          .orient("bottom"),
-        label: svg.append('g')
-          .append("text.label")
-          .style("text-anchor", "right")
-          .text("t"),
-        update: function(width, height) {
-          this.fun.tickSize(-height);
-          this.g.translate([0, height]);
-          this.g.call(this.fun);
-          this.label.translate([width - 8, height - 5])
-        }
-      };
-      return tAxis;
-    }
-  };
-}
+
 
 function quadFunLeft(quadTools, drawTools) {
   // =====setup=====
@@ -211,9 +169,13 @@ function quadFunLeft(quadTools, drawTools) {
 
     var clipPath = svg.append('defs').append('svg:clipPath')
       .attr('id', 'clipPath6')
-      .append('rect')
+      .append('rect');
 
-    var bg = (function() {
+    
+
+    var bg = drawTools.bg(svg);
+
+    (function() {
       var addDrag = d3.behavior.drag()
         .on('dragstart', function(d) {
           if (d3.event.defaultPrevented) return;
@@ -234,17 +196,9 @@ function quadFunLeft(quadTools, drawTools) {
           E.hilite.toggleOff();
         });
 
-      return svg.append('rect.background')
-        .attr({
-          rt: 4,
-          ry: 4,
-        })
-        .on("contextmenu", function(d, i) {
-          d3.event.preventDefault();
-        })
-        .call(addDrag);
+      bg.rect.call(addDrag);
 
-    })();
+    })(bg);
 
     var tAxis = drawTools.tAxis(t, svg);
     var yAxis = drawTools.yAxis(y, svg);
@@ -465,7 +419,8 @@ function quadFunLeft(quadTools, drawTools) {
       s.attr('width', width + M.left + M.right);
       y.range([height, 0]);
       t.range([0, width]);
-      bg.attr("width", width).attr('height', height);
+      bg.update(width, height);
+      // bg.attr("width", width).attr('height', height);
       clipPath.attr("width", width).attr('height', height);
       bars.tBar.translate([0, height]);
       tAxis.update(width, height);
@@ -537,20 +492,15 @@ function quadFunMiddle(quadTools, drawTools) {
     var svg = s.append("g").translate([M.left, M.top]);
 
     var clipPath = svg.append('defs')
-      .append('clipPath')
-      .attr('id', 'clipDy')
+      .append('svg:clipPath')
+      .attr('id', 'clip7')
       .append('rect');
 
-    var bg = svg.append('rect.background')
-      .attr({
-        rx: 4,
-        ry: 4,
-      });
-
+    var bg = drawTools.bg(svg);
     var tAxis = drawTools.tAxis(t, svg);
     var yAxis = drawTools.yAxis(t, svg);
 
-    var main = svg.append('g.main').attr('clip-path', 'url(#clipDy)');
+    var main = svg.append('g.main').attr('clip-path', 'url(#clip7)');
 
     var plot = {
       derPath: main.append('path.derPath'),
@@ -594,7 +544,7 @@ function quadFunMiddle(quadTools, drawTools) {
       y.range([height, 0]);
       y2.range([height, 0]);
       t.range([0, width]);
-      bg.attr("width", width).attr('height', height);
+      bg.update(width, height);
       clipPath.attr("width", width).attr('height', height);
       tAxis.update(width, height);
       yAxis.update(width);

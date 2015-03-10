@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css" href="style/text.css">
 <link rel="stylesheet" type="text/css" href="style/cart.css">
 
-
 <script src='bower_components/jquery/dist/jquery.min.js'></script>
 <script src="bower_components/d3/d3.js" charset="utf-8"></script>
 <script src="js/d3-jetpack.js" charset="utf-8"></script>
@@ -29,27 +28,43 @@
 <body ng-app="mainApp" class='container'>
 
   <ng-include src="'templates/intro.html'"></ng-include>
-
   <ng-include src="'templates/partOne.html'"></ng-include>
 
-  <div ng-controller="expCtrl as E" class='shadow-z-1 col-xs-4 plot' style='padding: 20px;'>
+<!--   <div ng-controller="expCtrl as E" class='shadow-z-1 col-xs-4 plot' style='padding: 20px;'>
     <p class='jaxTitle'>$$y' = 0.5 \cdot y$$</p>
     <div dy-der class='shadow-z-2' style='padding: 10px;'></div>
-  </div>
-  
+  </div> -->
   <ng-include src="'templates/partTwo.html'"></ng-include>
 </body>
 
 <script type="text/javascript">
 angular.module('mainApp', [])
-  .run(function($rootScope, $window) {
+  .run(function($rootScope, $window, $interval) {
     $window.onresize = function() {
       $rootScope.$broadcast('windowResize');
     };
+
+    $interval(function() {
+      d3.selectAll('.dot3')
+        .transition('pulseIn')
+        .delay(function(d,i){
+          return _.random(50,250);
+        })
+        .ease('back')
+        .duration(700)
+        .attr('transform', 'scale(' + 1.1 + ')')
+        .transition('pulseOut')
+        .ease('bounce-in')
+        .duration(750)
+        .attr('transform', 'scale(' + 1 + ')');
+    }, 1500);
+
   });
 </script>
 <script type="text/javascript" src='js/controllers.js'></script>
 <script type="text/javascript" src='js/sol.js'></script>
+<script type="text/javascript" src='js/slopeDer.js'></script>
+<script type="text/javascript" src='js/drawTools.js'></script>
 <script type="text/javascript" src='js/dy.js'></script>
 <script type="text/javascript" src='js/sliderDer.js'></script>
 <script type="text/javascript" src='js/cartDer.js'></script>
